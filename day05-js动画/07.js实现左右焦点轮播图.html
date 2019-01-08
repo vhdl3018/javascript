@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        ul,
+        li,
+        img {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 520px;
+            height: 280px;
+            padding: 5px;
+            position: relative;
+            border: 1px solid #ccc;
+            margin: 100px auto 0;
+        }
+
+        .ad {
+            width: 520px;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #box img {
+            width: 520px;
+        }
+
+        .ad ul li {
+            float: left;
+        }
+
+        .ad ul {
+            position: absolute;
+            top: 0;
+            width: 2940px;
+        }
+
+        .ad ul li.current {
+            display: block;
+        }
+
+        #focusD {
+            display: none;
+        }
+
+        #focusD span {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -20px;
+            background: #000;
+            cursor: pointer;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+
+        #focusD #right {
+            right: 5px;
+            left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="all">
+        <div class="ad">
+            <ul id="imgs">
+                <li><img src="images/01.jpg" /></li>
+                <li><img src="images/02.jpg" /></li>
+                <li><img src="images/03.jpg" /></li>
+                <li><img src="images/04.jpg" /></li>
+                <li><img src="images/05.jpg" /></li>
+            </ul>
+        </div>
+        <!--相框-->
+        <div id="focusD"><span id="left">&lt;</span><span id="right">&gt;</span>
+        </div>
+    </div>
+    <script src="../demo.js"></script>
+    <script>
+        //获取box
+        var box = my$("box");
+
+        //获取相框
+        var ad = box.children[0];
+        var adWidth = ad.offsetWidth;
+        //获取两个焦点
+        var left = my$("left");
+        var right = my$("right");
+
+        //获取ul
+        var ulObj = ad.children[0];
+
+        //为box添加鼠标进入事件
+        box.onmouseover = function () {
+            my$("focusD").style.display = "block";
+        }
+        box.onmouseout = function () {
+            my$("focusD").style.display = "none";
+        }
+
+        //点击右按钮
+        var index = 0;
+        right.onclick = function () {
+            // alert(111);
+            //console.log(ulObj.children.lenghth);
+            //当前图片索引小于图片的总数，则自动++
+            if (index < ulObj.children.length - 1) {
+                // alert(index);
+                index++;
+                animate(ulObj, -index * adWidth);
+            }
+        };
+        //点击左按钮
+        left.onclick = function () {
+            if (index > 0) {
+                index--;
+                animate(ulObj, -index * adWidth);
+            }
+        };
+    </script>
+</body>
+
+</html>

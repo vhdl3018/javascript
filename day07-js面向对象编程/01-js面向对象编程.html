@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>面向对象编程</title>
+</head>
+<body>
+    <script>
+        //构造函数  
+        function Student(name,age,sex){
+            this.name=name;
+            this.age=age;
+            this.sex=sex;
+
+        }
+        /*
+        所有学生的身高都是188，所有人的体重都是55
+        所有学生都要每天500行代码
+        所有学生每天都要吃一个10斤西瓜
+
+        */
+        //原型写法
+        // Student.prototype.height="188";
+        // Student.prototype.weight="55kg";
+        // Student.prototype.study=function(){
+        //     console.log("学习，so easy");
+        // }
+
+        // Student.prototype.eat=function(){
+        //     console.log("都要吃饭才行");
+        // }
+
+        //简单原型写法
+        Student.prototype = {
+            //手动修改构造器的指向 
+            constructor:Student,
+            height:"188",
+            weight:"55kg",
+            study:function(){
+                console.log("学习，so easy"); 
+                console.log("================");
+                this.eat()+console.log("《我是被调用的》");
+            },
+            eat:function(){
+                console.log("都要吃饭才行");
+            }
+        }
+
+        //实例化对象，并初始化
+        var person = new Student("小网","24","男");
+        person.study();
+        person.eat();
+        console.dir(Student);
+        console.dir(person);
+    </script>
+</body>
+</html>

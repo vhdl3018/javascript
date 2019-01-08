@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        function Animal(name) {
+            this.name = name;
+            this.wang = function () {
+                console.log("汪汪");
+            };
+        }
+        var dog = new Animal("小黄");
+
+        console.dir(dog);  //实例对象
+        console.dir(Animal);//构造函数
+
+        console.log(dog.__proto__.constructor == Person);
+        console.log(dog.__proto__.constructor == Animal);
+
+        console.log(dog.constructor == Animal);
+        console.log(dog instanceof Animal);
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>贪吃蛇游戏-01</title>
+<style>
+    .map{
+        width: 800px;
+        height: 600px;
+        background: #ccc;
+        position: relative;
+    }
+</style>
+</head>
+<body>
+    <!-- 画出地图，设置样式 -->
+    <div class="map"></div>
+<script>
+
+    //创建食物对象
+    (function(){
+        //用来保存每个食物小方块
+        var elements=[];
+
+        //食物就是一个对象，有宽、高、颜色 ，有横纵坐标
+        //先定义构造函数，然后创建对象
+        function Food(x,y,width,height,color){
+            //横纵坐标
+            this.x = x;
+            this.y = y;
+            //宽和高
+            this.width = width||20;
+            this.height = height||20;
+            //背景颜色
+            this.color=color || "green";
+        }
+        //为原型添加初始化方法，在页面中添加食物
+        //因为食物要在地图上显示，所以需要传入地图对象
+        Food.prototype.init=function(map){
+            //先删除elements中现有的食物
+            remove();
+            //创建div
+            var div = document.createElement("div");
+            //把div加到map中
+            map.appendChild(div);
+
+            //设置div样式
+            div.style.width =this.width+"px";
+            div.style.height=this.height+"px";
+            div.style.backgroundColor=this.color;
+
+            //先脱离文档流
+            div.style.position="absolute";
+            //随机横纵坐标
+            this.x = parseInt(Math.random()*(map.offsetWidth/this.width))*this.width;
+            this.y = parseInt(Math.random()*(map.offsetHeight/this.height))*this.height;
+            
+            div.style.top = this.y + "px";
+            div.style.left = this.x + "px";
+            //把div加入到数组elements中
+            elements.push(div);
+        }
+
+        //私有函数----删除食物
+        function remove(){
+            //elements数组中有这个食物
+            for(var i=0;i<elements.length;i++){
+                var ele = elements[i];
+                //找到这个子元素的父级元素，然后删除这个子元素
+                ele.parentNode.removeChild(ele);
+                //删除elements中的数组
+                elements.splice(i,1);
+            }
+        }
+
+        //把Food暴露给window，方便外部使用
+        window.Food=Food;
+    })();
+    var fd = new Food();
+    var map = document.querySelector(".map");
+    fd.init(map);
+    fd.init(map);
+    fd.init(map);
+    fd.init(map);
+    console.log(fd.x + "==" + fd.y);
+</script>
+</body>
+</html>

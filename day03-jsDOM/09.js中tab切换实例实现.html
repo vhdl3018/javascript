@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .box {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        .hd {
+            height: 45px;
+        }
+
+        .hd span {
+            display: inline-block;
+            width: 90px;
+            background-color: pink;
+            line-height: 45px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .hd span.current {
+            background-color: purple;
+        }
+
+        .bd li {
+            height: 255px;
+            background-color: purple;
+            display: none;
+        }
+
+        .bd li.current {
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box" id="box">
+        <div class="hd">
+            <span class="current">体育</span>
+            <span>娱乐</span>
+            <span>新闻</span>
+            <span>综合</span>
+        </div>
+        <div class="bd">
+            <ul>
+                <li class="current">我是体育模块</li>
+                <li>我是娱乐模块</li>
+                <li>我是新闻模块</li>
+                <li>我是综合模块</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        //1、获取id为box的DOM标签
+        var box = document.getElementById("box");
+        //2、获取box下的所有span的标签
+        var spans = box.getElementsByTagName("span");
+        //3、获取box下的所有li的标签
+        var lists = box.getElementsByTagName("li");
+        //4、循环所有的span标签
+        for (var i = 0; i < spans.length; i++) {
+            //5、获取当前span的值，并该值，重新给span添加一个自定义属性
+            //点击前就添加自定义属性和值
+            spans[i].setAttribute("index", i);
+            //6、给每个span添加一个点击事件
+            spans[i].onclick = function () {
+                //7、将所有的span、li标签，去除class属性
+                for (var j = 0; j < spans.length; j++) {
+                    spans[j].removeAttribute("class");
+                    lists[j].removeAttribute("class");
+                }
+                //8、为当前的span、li标签添加class属性和值
+                this.setAttribute("class", "current");
+                //9、获取当前span的i值，并通过index值，设置i值对应的li标签class属性和值
+                var index = this.getAttribute("index");
+                lists[index].setAttribute("class", "current");
+            }
+        }
+
+    </script>
+</body>
+
+</html>

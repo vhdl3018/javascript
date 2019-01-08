@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        /*         var  aArr = [];
+                console.log(aArr.length);  //输出为0
+                aArr[11] = 9;
+                console.log(aArr.length); //输出为12 */
+        var aNumbers = [12, 32, 434, 56, 77, 88, 1, 23, 5, 333, 56, 333];
+       //例7、去掉数组中的重复元素333
+        var aNews = [];  //新数组长度为0
+        for(var i=0;i<aNumbers.length;i++){
+            if(aNumbers[i] != 333){
+                aNews[aNews.length] = aNumbers[i];
+            }
+        }
+       // console.log(aNews);
+
+        //求一个数字的阶乘和
+        function getJieCheng(num){
+//            alert(num);
+            var result=1;
+            for(var i=1;i<=num;i++){
+                result *= i;
+            }
+            return result;
+        }
+
+        function getJieChengSum(num) {
+//            alert(num);
+            var sum=0;
+            for(var i=1;i<=num;i++){
+                sum+=getJieCheng(i);
+            }
+            return sum;
+
+        }
+        var res = getJieChengSum(5);
+        console.log(getJieChengSum(5));
+
+        //函数表达式,语句结束后，要加分号。
+        var  f2 = function(){  //匿名函数，赋值给变量
+            return "呵呵，我被调用了";
+        };
+        console.log(f2());
+
+        //函数声明，如果出现同名函数，则后面的函数会覆盖前面的函数
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

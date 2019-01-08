@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery选择器测试</title>
+    <!-- <script src="./jquery-1.12.4.min.js"></script> -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+    <script>
+    $(function(){
+      
+        //  $("p.info").css("color","green");
+        // $("p:first").css("color","green");
+
+        // $("ul li:first").css("color","red");
+
+        $("ul li:first").click(function(){
+            $(this).hide();
+        });
+
+        $("p:first").mouseenter(function(){
+            $(this).html("你不要骚扰到我了~！").css("color","red");
+        });
+        $("p:first").mouseleave(function(){
+            $(this).html("恶心的家伙终于是走了~！").css("color","green");
+        });
+    });
+    console.log(window);
+    </script>
+</head>
+<body>
+    <p class="info">这是一个p标签 ，我是第1个。</p>
+    <p>这是一个p标签 ，我是第2个。</p>
+    <p>这是一个p标签 ，我是第3个。</p>
+    <p>这是一个p标签 ，我是第4个。</p>
+
+    <ul>
+        <li>点击我，我会消失。</li>
+        <li>222</li>
+        <li>333</li>
+        <li>4444</li>
+    </ul>
+</body>
+</html>

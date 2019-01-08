@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // var num=100;
+        // var b = num++;
+        // console.log(b);
+
+        // var num=10;
+        // a = ++num;
+        // console.log(a);
+
+/*         var age = prompt("请你输入年龄：");
+        if (parseInt(age) > 18) {
+            console.log("你可以去看电影。");
+        } else {
+            console.log("你还未成年，不可以看电影。");
+        } */
+
+        //计算6的阶乘
+        var huo=1;
+        var i=1;
+        while(i <= 6){
+            huo *= i;
+            i++;
+        }
+        console.log(huo);
+
+        //求1-100之间所有的偶数和        
+        var i = 1;//计数器
+        var sum = 0;//存储所有偶数之和
+        while(i<=100){            
+            if(i%2 == 0){  //如果是偶数，则累加到sum变量中
+                sum += i;
+            }
+            i++;
+        }        
+        console.log(sum);
+
+        //求账号和密码是否一致，登录的效果实现
+        var userName = prompt("请你输入账号：");
+        var userPwd = prompt("请输入密码：");
+        
+        while(userName != "admin" || userPwd != 123){
+            userName = prompt("请你输入账号：");
+            userPwd = prompt("请输入密码：");
+        }
+
+        console.log("登录成功~！");
+
+    </script>
+</head>
+
+<body>
+    <p>
+        <p></p>
+    </p>
+</body>
+
+</html>

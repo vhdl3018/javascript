@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: 0;
+        }
+
+        .all {
+            width: 500px;
+            height: 200px;
+            padding: 7px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .screen {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screen li {
+            width: 500px;
+            height: 200px;
+            /* overflow: hidden; */
+            float: left;
+        }
+
+        .screen ul {
+            position: absolute;
+            left: 0;
+            top: 0px;
+            width: 3000px;
+        }
+
+        .all ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .all ol li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .all ol li.current {
+            background: #DB192A;
+        }
+
+        #arr {
+            display: none;
+        }
+
+        #arr span {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -20px;
+            background: #000;
+            cursor: pointer;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+
+        #arr #right {
+            right: 5px;
+            left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="all" id='box'>
+        <div class="screen">
+            <!--相框-->
+            <ul>
+                <li><img src="images1/1.jpg" width="500" height="200" /></li>
+                <li><img src="images1/2.jpg" width="500" height="200" /></li>
+                <li><img src="images1/3.jpg" width="500" height="200" /></li>
+                <li><img src="images1/4.jpg" width="500" height="200" /></li>
+                <li><img src="images1/5.jpg" width="500" height="200" /></li>
+            </ul>
+            <ol>
+            </ol>
+        </div>
+        <div id="arr"><span id="left">&lt;</span><span id="right">&gt;</span></div>
+    </div>
+
+    <script src="../demo.js"></script>
+    <script>
+        //获取最外面的div
+        var box = my$("box");
+        //获取相框
+        var screen = box.children[0];
+        //获取相框的宽度
+        var imgWidth = screen.offsetWidth;
+        //获取ul
+        var ulObj = screen.children[0];
+        //获取ul中所有li
+        var list = ulObj.children;
+        //获取ol
+        var olObj = screen.children[1];
+        //焦点的div
+        var arr = my$("arr");
+        var index = 0;
+        //创建小按钮，根据ul中的li个数,创建ol中的li元素 
+        for (var i = 0; i < list.length; i++) {
+            //创建li标签，添加到ol标签中
+            var liObj = document.createElement("li");
+            //在每个ol中的li标签上添加一个自定义属性，存储索引值
+            liObj.setAttribute("index", i);
+            olObj.appendChild(liObj);
+            liObj.innerHTML = (i + 1);
+            //给创建好的li添加事件（鼠标进入事件）
+            liObj.onmouseover = function () {
+                //先干掉看有ol中的li的背景颜色
+                for (var j = 0; j < olObj.children.length; j++) {
+                    olObj.children[j].removeAttribute("class");
+                }
+                //设置当前鼠标进来的li背景颜色
+                this.className = "current";
+                //获取鼠标进入的li的当前索引值
+                index = this.getAttribute("index");
+                //移动ul
+                animate(ulObj, -index * imgWidth);
+            }
+        }
+        //改变当前的li背景颜色
+        olObj.children[0].className = "current";
+
+        //先克隆ul中第一个li,加入到ul的最后 
+        ulObj.appendChild(list[0].cloneNode(true));
+        
+        //添加定时器，让图片自动播放
+        var timeId = setInterval(clickHandle,1000);
+        //鼠标进入到box的div中，显示左右按钮
+        box.onmouseover = function () {
+            arr.style.display = "block";
+            clearInterval(timeId);
+        }
+
+        //鼠标离开到box的div中，隐藏左右按钮
+        box.onmouseout = function () {
+            arr.style.display = "none";
+            timeId = setInterval(clickHandle,1000);
+        }
+
+        //点击右边的按钮
+        my$("right").onclick = clickHandle;
+        
+        function clickHandle() {
+
+            //当
+            if (index == list.length - 1) {
+                index = 0;
+                ulObj.style.left = 0 + "px";
+            }
+            index++;
+            animate(ulObj, -index * imgWidth);
+            if (index == list.length - 1) {
+                olObj.children[olObj.children.length - 1].className = "";
+                olObj.children[0].className = "current";
+            } else {
+                for (var j = 0; j < olObj.children.length; j++) {
+                    olObj.children[j].removeAttribute("class");
+                }
+                olObj.children[index].className = "current";
+            }
+
+
+        }
+
+        //点击左边的按钮
+        my$("left").onclick = function () {
+
+            //当
+            if (index == 0) {
+                //alert(111);
+                index = list.length - 1;
+                ulObj.style.left = -index * imgWidth + "px";
+            }
+            index--;
+            animate(ulObj, -index * imgWidth);
+            for (var j = 0; j < olObj.children.length; j++) {
+                olObj.children[j].removeAttribute("class");
+            }
+            // alert(index);
+            olObj.children[index].className = "current";
+        }
+
+
+
+    </script>
+</body>
+
+</html>

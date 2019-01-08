@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //测试Math对象的random()方法
+        var num = parseInt(Math.random() * 16);
+        console.log(num);
+
+        //获取随机颜色 #333333
+        function getHexColor() {
+            var str = "#";
+            var arr = ["0", "1", "2", "3",
+                        "4", "5", "6", "7",
+                        "8", "9", "a", "b",
+                        "c", "d", "e", "f"];
+            for (var i = 0; i <= 5; i++) {
+                var num = parseInt(Math.random() * 16);
+                str += arr[num];
+            }
+            return str;
+        }
+        var color = getHexColor();
+        console.log(color);
+        //更改页面的背景颜色,页面加载事件
+        window.onload =function(){
+            document.bgColor=getHexColor();
+        };
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

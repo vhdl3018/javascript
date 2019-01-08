@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+        width: 200px;
+        height: 200px;
+        background: blue;
+        margin: 20px;
+    }
+    </style>
+    <script src="../demo.js"></script>
+</head>
+
+<body>
+    <div id="dv"></div>
+    <input type="button" value="改变颜色" id="btn">
+    <script>
+        // //点击按钮，改变div的背景颜色
+        // document.getElementById("btn").onclick=function(){
+        //     document.getElementById("dv").style.backgroundColor="red";
+        // }
+
+        //面向对象初级
+        //按钮是一个对象，div是一个对象，颜色是一个属性
+        // function ChangeStyle(btnId,dvId,color){
+        //     this.btnObj = document.getElementById(btnId);
+        //     this.dvObj = document.getElementById("dv");
+        //     this.color = color;
+        // }
+
+        // //数据共享来改变背景颜色 
+        // ChangeStyle.prototype.init = function(){
+        //     // console.log(this);  //就是实例对象----就是当前对象
+        //     var that = this;
+        //     //点击按钮，改变div的背景颜色
+        //     this.btnObj.onclick=function(){
+        //         that.dvObj.style.backgroundColor=that.color;
+        //     }
+        // }
+
+        // //实例化对象
+        // var cs = new ChangeStyle("btn","dv","red");
+        // cs.init();
+
+        function ChangeStyle(btnObj, dvObj, json) {
+            this.btnObj = btnObj;
+            this.dvObj = dvObj;
+            this.json = json;
+        }
+        //给原型添加函数 
+
+        ChangeStyle.prototype.init = function () {
+            var that = this;
+
+            this.btnObj.onclick = function () {
+                for(var sty in that.json) {
+                    console.log(sty);
+                    that.dvObj.style[sty] = that.json[sty];
+                }
+            }
+
+        }
+
+        //实例化对象
+        var json = {"width":"100px","height":"100px","backgroundColor":"red"};
+        var cs = new ChangeStyle(my$("btn"),my$("dv"),json);
+        cs.init();
+    </script>
+</body>
+
+</html>

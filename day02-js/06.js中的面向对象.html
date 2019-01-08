@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        //1)创建对象
+        var obj = new Object();
+        //对象有特征和行为
+        //2)添加属性
+        obj.name = "小王";
+        obj.age = 18
+        //)添加方法
+        obj.eat = function () {
+            console.log("小王喜欢吃臭豆腐");
+        }
+        obj.play = function () {
+            console.log("我喜欢玩麻将");
+        }
+
+        console.log(obj.age);
+        console.log(obj.name);
+        obj.eat();
+        obj.play();
+        //4)创建一个自定义的对象
+
+        function Person(name, age) {
+            this.name = name;
+            this.age = 19;
+            this.eat = function () {
+                console.log("我的名字叫" + this.name + ",我喜欢吃饭");
+            }
+            this.play = function () {
+                console.log("我的名字叫：" + this.name + ",我今年" + this.age + "岁！");
+            }
+        }
+        //5)生成一个自定义对象
+        var person1 = new Person("小红", "12");
+        person1.eat();
+        person1.play();
+
+        console.log("----------------------------------------");
+        //6)通过字面量方式创建对象
+        var person = {
+            name: "小王",
+            age: 19,
+            eat: function () {
+                document.write(person.name + "会吃饭");
+            }
+        }
+        console.log(person.name);
+        person.eat();
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

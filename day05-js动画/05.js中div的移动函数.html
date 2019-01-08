@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+        margin: 0;
+        padding:0;
+    }
+    div{
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        margin-top:20px;
+        /* margin-left: 40px; */
+        background: darkblue;
+    }
+    input{
+        margin: 20px 0 0 40px;
+    }
+    </style>
+    <script src="../demo.js"></script>
+
+</head>
+
+<body>
+    <input type="button" value="移动400px" id="btn1">
+    <input type="button" value="移动800px" id="btn2">
+    <div id="dv"></div>
+
+    <script>
+        //点击按钮一移动div,到目标位置
+        my$("btn1").onclick = function () {
+            animate(my$("dv"),400);
+        };
+        //点击按钮二移动div,到目标位置
+        my$("btn2").onclick = function () {
+            animate(my$("dv"),800);
+        };
+       </script>
+</body>
+
+</html>

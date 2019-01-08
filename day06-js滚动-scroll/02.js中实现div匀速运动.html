@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        div{
+            width: 200px;
+            height:100px;
+            background: red;
+            margin-top:10px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="移动400px" id="btn1">
+    <input type="button" value="移动800px" id="btn2">
+    <div id="dv"></div>
+
+    <script src="../demo.js"></script>
+    <script>
+        my$("btn1").onclick = function () {
+            // alert(111);
+            animate2(my$("dv"),"width", 400);
+        }
+        my$("btn2").onclick = function () {
+            animate1(my$("dv"), 800);
+        }
+        //匀速动画
+        function animate1(element, target) {
+            // alert(element);
+            //清除定时器
+            clearInterval(element.timeId);
+            //创建定时器
+            element.timeId = setInterval(function () {
+                //获取当前的位置
+                var current = element.offsetLeft;
+                //定义当前移动速度 
+                var step = (target - current) / 10;
+                //alert(step);
+                //根据当前位置和目标位置，设定step的正负值 =====匀速运动
+                //step = (current-target)>0 ? -step : step;
+
+                //根据当前位置和目标位置，设定step的正负值 =====变速运动
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+
+                //当前位置的加等速度
+                current += step;
+                element.style.left = current + "px";
+                //判断当前位置与目标位置的差值绝对值是否大于速度的绝对值
+                //若大于，则继续移动；小于刚达到目标位置，清除定时器；
+                // if(Math.abs(current-target)>Math.abs(step)){
+                //     element.style.left = current+"px";
+                // }else{
+                //     clearInterval(element.timeId);
+                //     element.style.left = target+"px";
+                // }
+
+                if (current == target) {
+                    //清理定时器
+                    clearInterval(element.timeId);
+                }
+
+            }, 20);
+        }
+
+        function animate2(element, attr, target) {
+            //清除定时器
+            clearInterval(element.timeId);
+            //创建定时器
+            element.timeId = setInterval(function () {
+                //获取当前的位置
+                var current = parseInt(getStyle(element,attr));
+                // alert(current);
+                //定义当前移动速度 
+                var step = (target - current) / 10;
+                //根据当前位置和目标位置，设定step的正负值 =====变速运动
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+
+                //当前位置的加等速度
+                current += step;
+                element.style[attr] = current + "px";
+                //判断当前位置与目标位置是否相等
+                if (current == target) {
+                    //清理定时器
+                    clearInterval(element.timeId);
+                }
+
+            }, 20);
+        }
+    </script>
+</body>
+
+</html>

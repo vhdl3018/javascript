@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //动物有名字，有体重，有吃东西的行为
+    function Animal(name,weight) {
+        this.name=name;
+        this.weight=weight;
+
+    }
+    //动物的原型的方法
+    Animal.prototype.eat=function () {
+        console.log("天天吃东西，就是吃");
+
+    }
+    //狗的构造函数
+    function Dog(color) {
+        this.color=color;
+    }
+    Dog.prototype=new Animal("小轩","50kg");
+    Dog.prototype.bitePerson=function () {
+        console.log("汪汪，咬死你");
+    }
+
+    //哈士奇
+    function ErHa(sex){
+        this.sex=sex;
+    }
+    ErHa.prototype=new Dog("黑白色");
+    ErHa.prototype.play=function () {
+        console.log("玩主人");
+    }
+
+    var erha = new ErHa("公的");
+
+//    console.log(erha.name);
+//    console.log(erha.weight);
+//    console.log(erha.color);
+//    console.log(erha.sex);
+    console.log(erha.eat());
+//    console.log(erha.bitePerson());
+//    console.log(erha.play());
+
+</script>
+</body>
+</html>

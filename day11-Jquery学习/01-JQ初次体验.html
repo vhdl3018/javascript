@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="http://www.baidu.com" value="显示效果" id="btn">百度</a>
+    <div id="dv"></div>
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        //点击按钮设置div的宽和高，背景颜色
+        //1、引入JQuery的js文件
+        // $("#btn").click(function(){
+        //     $("#dv").css({"width":"200px","height":"200px","background-color":"red"});
+        // }); 
+
+        // $(function(){
+        //     alert($());
+        //     alert($("btn"));
+        //     alert($("btn").css("background-color","blue"));
+
+        //     //上面三个语句，返回的都是同一个jQuery对象
+
+        // });   
+    // function $my(){
+    //     obj = new Object();
+    //     obj.username="123";
+    //     obj.say=function(){
+    //         console.log("my name is " + obj.username);
+    //     }
+    //     return obj;
+    // }
+
+    // $my().say();
+    $(function(){
+        $("btn").click(function(event){
+            alert( "The link will no longer take you to jquery.com" );
+            // event.preventDefault();
+        });
+    });
+    </script>
+</body>
+</html>

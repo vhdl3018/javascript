@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #dv1{
+        width: 300px;
+        height: 200px;
+        background: red;
+    }    
+    #dv2{
+        width: 250px;
+        height: 150px;
+        background: green;
+    }    
+    #dv3{
+        width: 200px;
+        height: 100px;
+        background: blue;
+    }
+    </style>
+    <script src="../demo.js"></script>
+</head>
+<body>
+    <!-- 事件冒泡
+        多个元素嵌套，有层次关系，这些元素都注册了相同的事件。
+        如果里面的元素事件触发，外面元素的该事件自动的触发。
+
+        如何阻止事件冒泡？
+        window.event.cancelBublle=true;
+        
+
+    -->
+    <div id="dv1">
+        <div id="dv2">
+            <div id="dv3"></div>
+        </div>
+    </div>
+
+    <script>
+        my$("dv1").onclick=function(){
+            console.log(1111);
+        }        
+        my$("dv2").onclick=function(){
+            console.log(2222);
+        }  
+        //事件处理参建对象     
+        my$("dv3").onclick=function(e){
+            console.log(3333);
+            console.log(e);
+        }
+        
+    </script>
+</body>
+</html>

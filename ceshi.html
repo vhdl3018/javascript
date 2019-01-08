@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        span {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+
+            background: #000;
+
+        }
+    </style>
+</head>
+
+<body>
+    <span id="s"></span>
+    <script src="./demo.js"></script>
+    <script>
+        // var a= window.getComputedStyle(my$("s"),null);
+        // console.log(a);
+
+        // console.log(my$("s").currentStyle)
+
+        //获取任意的一个属性的当前的属性值: left--->此时的left属性的值,width---当前的元素的宽
+        function getStyle(element, attr) {
+            //判断浏览器是否支持这个方法
+            return window.getComputedStyle ? window.getComputedStyle(element, null)[attr] : element.currentStyle[attr];
+        }
+
+        console.log(getStyle(my$("s"), "position"));
+    </script>
+</body>
+
+</html>

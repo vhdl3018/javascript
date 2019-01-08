@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+        原型的作用之一：数据共享，节省内存空间
+        原型的作用之二：实现继承
+     */
+    function Person(name,age,sex){
+        this.name=name;
+        this.age=age;
+        this.sex=sex;
+
+    }
+
+    Person.prototype.eat = function(){
+        console.log("吃饭了");
+    }
+
+    Person.prototype.sleep=function () {
+        console.log("会睡觉");
+    }
+    Person.prototype.play=function(){
+        console.log("生活就是一个玩法而已");
+    }
+
+    //创建学生对象
+//    function Student(name,age,sex) {
+//        this.name=name;
+//        this.age=age;
+//        this.sex=sex;
+//    }
+//
+//    Student.prototype.eat = function(){
+//        console.log("吃饭了");
+//    }
+//
+//    Student.prototype.sleep=function () {
+//        console.log("会睡觉");
+//    }
+//    Student.prototype.play=function(){
+//        console.log("生活就是一个玩法而已");
+//    }
+//    Student.prototype.study=function () {
+//        console.log("我会学习");
+//    }
+    function Student(score){
+        this.score=score;
+    }
+    //改变学生的原型指向即可------->学生和人已经发生关系
+    Student.prototype=new Person("小明",19,"男");
+    Student.prototype.study=function () {
+        console.log("我会学习");
+    }
+    var stu = new Student(100);
+    console.dir(stu);
+
+</script>
+</body>
+</html>

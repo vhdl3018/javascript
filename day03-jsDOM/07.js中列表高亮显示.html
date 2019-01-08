@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1111</li>
+        <li>3333</li>
+        <li>dfgdg</li>
+        <li>dfgdfgdfg</li>
+        <li>fdgdfgdfg</li>
+        <li>fdsfdsf</li>
+        <li>fsdfsdfsd</li>
+    </ul>
+
+    <script>
+        //先获取所有的li元素
+        var liObjs = document.getElementsByTagName("li");
+        //给所有的li标签添加滑过事件
+        for(var i=0;i<liObjs.length;i++){
+            //鼠标划过，添加事件
+            liObjs[i].onmouseover = function (){
+                //alert("1111");
+                //先去掉所有li标签的背景颜色
+                // for(var j=0;j<liObjs.length;j++){
+                //     liObjs[j].style.backgroundColor="";
+                // }
+                //为当前的li标签添加背景颜色
+                this.style.backgroundColor = "#00ffff";
+            }
+            //鼠标离开，添加事件
+            liObjs[i].onmouseout = function (){
+                //alert("1111");
+                //先去掉所有li标签的背景颜色
+                //为当前的li标签添加背景颜色
+                this.style.backgroundColor = "";
+            }
+
+        }
+    </script>
+</body>
+</html>

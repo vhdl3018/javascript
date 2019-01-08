@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>构造函数、原型对象和实例对象之间的关系</title>
+</head>
+<body>
+    <script>
+        /**
+            构造函数可以实例化对象
+            构造函数中有一个属性叫prototype，是构造函数对象
+            构造函数的原型对象（prototype）中有一个constructor构造器，
+            这个构造器指向的就是自己所在的原型对象所在的构造函数
+            实例对象的原型对象（__proto__）指向的是该构造函数的原型对象
+            构造函数的原型对象（prototype）中的方法是可以被实例对象直接访问的
+
+        */
+
+        //通过自调用函数，产生一个随机数
+        (function(){
+            //产生随机数的构造函数
+            function Random(){
+
+            }
+            //在原型对象中添加方法
+            Random.prototype.getRandom=function(){
+                return Math.floor(Math.random()*5);
+            };
+            window.random = new Random();
+        })(window);
+        var rm = random;
+        var num = rm.getRandom();
+        console.log(num);
+        //全局变量
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var str=String("fsdfaopeireworqpjlskfsdfdmsdflkjfalsdjfaasldkmalvjdlfjasdhfhsdfadsfsz");
+        //统计字符串中，各个字母有多少个
+        str=str.toUpperCase();
+        //定义一个数组
+        var arr = Array();
+        for(var i=0;i<str.length;i++){
+            if(arr[str[i]]){   //如果当前字母为下标的数组存在，刚自动加1
+                arr[str[i]]++;
+            }else{
+                arr[str[i]] = 1;  //当前字母不存在，则将字母存储到数组中，并默认为1
+            }
+        }
+        //循环打印出字母的个数
+        for(var key in arr){
+            console.log("字符串中字母:"+ key + "，共有"+arr[key]+"个");
+        }
+        // console.log(arr);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        //计算用户输入所有数字的总和
+        var vUserInput;
+        var aNumbers = Array();
+        var sMessage="你输入了：<br/>";
+        var iTotal=0;
+        var iArrayIndex=0;
+        do{
+            vUserInput = Number(prompt("请输入一个数字，或者'0'退出","0"));
+            if(isNaN(vUserInput)){
+                document.write("输入错误字符："+vUserInput+"，请输入数字，'0'退出<br>");
+                continue;
+            }
+            aNumbers[iArrayIndex] = vUserInput;
+            iArrayIndex++
+        }while(vUserInput!=0)
+
+        //用for循环遍历数组
+        for(var i=0;i<aNumbers.length;i++){
+            iTotal += Number(aNumbers[i]);
+            sMessage += aNumbers[i] + "<br>";
+        }
+
+        sMessage += "总数：" + iTotal;
+        document.write(sMessage);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+        width: 300px;
+        height: 300px;
+        background: #445566;
+    }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="创建一个div标签" id="btn">
+    <div id="dv"></div>
+    <script>
+        // var btn = document.getElementById("btn");
+        // btn.onclick=function(){
+        //     document.write("<p>创建一个p标签</p>");
+
+        //     /**
+        //         document.write()创建元素：
+        //         缺陷，如果是在页面加载完毕后，此时通过这种方式创建元素，
+        //         那么，页面上存在的所有内容全部会覆盖掉。
+        //     **/
+        // }
+        // var btn = document.getElementById("btn");
+        // var dv = document.getElementById("dv");
+
+        // btn.onclick=function (){
+        //     dv.innerHTML="<div style='background:red'>我是一个新div</div>"
+        // };
+
+        var btn = document.getElementById("btn");
+        btn.onclick = function () {
+            var pObj = document.createElement("p");
+            setInnerText(pObj,"我是一个p标签");
+            var dv = document.getElementById("dv");
+            dv.appendChild(pObj);
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            position: absolute;
+            margin: 50px;
+            width: 100px;
+            height: 100px;
+
+            background: green;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <input type="button" value="移动400px" id="btn1">
+    <input type="button" value="移动800px" id="btn2">
+    <div id="dv"></div>
+    <script src="../demo.js"></script>
+    <script>
+        //div要移动 ，要脱离文档流   ----  postion:absolute;
+        //如果样式的代码是在style的标签中设置，外面是获取不到的
+        //如果样式的代码是在style的属性中设置，外面是可以获取的
+        //获取div的当前位置，offsetLeft
+        // console.log(my$("dv").offsetLeft);
+        //点击第一个按钮移动400px
+        my$("btn1").onclick = function () {
+            animate(my$("dv"), 400);
+        };
+        //点击第2个按钮
+        my$("btn2").onclick = function () {
+            animate(my$("dv"), 800);
+        };
+        //封装动画函数 
+        function animate(element, target) {
+            var timeId = setInterval(function () {
+                console.log(target);
+                //获取当前div的位置
+                var current = element.offsetLeft; //数字类型，没有px
+                
+                // 当前：800
+                // 目标：400
+
+                //div每次移动多少像素
+                // var step = 10;
+                // step = current > target ? step : -step;
+                // if(current<target){
+                //     current = current+step; 
+                // }else{
+                //     current = current-step; 
+                // }
+                var step = 10;
+                step = current>target ? -step : step;
+                console.log(step);
+                //将当前位置的left  自增
+                current += step;
+                //设置div的目标位置
+                //console.log(current);
+                //判断当前移动后的位置，是否到达目标位置
+                if (Math.abs(current-target) > Math.abs(step)) {
+                    // console.log(222);
+                    element.style.left = current + "px";
+                } else {
+                    // console.log("我来了骊？");
+                    clearInterval(timeId);
+                    element.style.left = target+"px";
+                }
+            }, 20);
+        }
+    </script>
+</body>
+
+</html>

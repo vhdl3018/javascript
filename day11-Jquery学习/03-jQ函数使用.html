@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./jquery-1.12.4.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <button id="btn">测试</button>
+        <br/>
+      
+        <input type="text" name="msg1"/><br/>
+        <input type="text" name="msg2"/><br/>
+      </div>
+
+    <script>
+        /*
+ 需求1. 点击按钮: 显示按钮的文本, 显示一个新的输入框
+ 需求2. 遍历输出数组中所有元素值
+ 需求3. 去掉"  my atguigu  "两端的空格
+ */
+        /*需求1. 点击按钮: 显示按钮的文本, 显示一个新的输入框*/
+        //1). 参数为函数 : 当DOM加载完成后，执行其中的函数     回调函数
+        $(function(){
+            $("#btn").click(function(){
+                //访问当前按钮的value值
+                console.log($(this).html());
+            });
+        });
+
+        /*需求2. 遍历输出数组中所有元素值*/
+        var arr = [123, 'atguigu', true]
+        // 1). $.each() : 隐式遍历数组
+        $.each(arr, function (index, item) {
+            console.log('第' + (index + 1) + '个元素的值为' + item)
+        })
+
+        /*需求3. 去掉"  my atguigu  "两端的空格*/
+        var str = "  my atguigu  "
+        // 2). $.trim() : 去除两端的空格
+        console.log(str.trim() === 'my atguigu')
+        console.log($.trim(str) === 'my atguigu') //true
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- //点击按钮禁用文本框和改变列表背景色 -->
+	<input type="button" value="禁用文本框" id="btn">
+    <input type="text" value="文本框" id="txt">
+    <ul id="u">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+	<script>
+		var btn = document.getElementById("btn");
+		btn.onclick=function(){
+            var txt=document.getElementById("txt");
+            txt.disabled = true;
+            var u = document.getElementById("u");
+            u.style.backgroundColor="yellow";
+		}
+    </script>
+    
+    <!-- 阻止超链接跳转 -->
+    <a href="http://www.baidu.com">百度</a>
+    <script>
+        
+    </script>
+</body>
+</html>
