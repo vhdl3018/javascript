@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js实现图片点击显示功能</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            width: 640px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .full-img {
+            position: relative;
+        }
+
+        .dark {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+        }
+
+        .thumb-bar img {
+            display: block;
+            width: 20%;
+            float: left;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 640px;
+            height: 480px;
+            background-color: rgba(0, 0, 0, 0);
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            //1、循环出点击按钮的图片，并实现点击显示功能
+            var thumbBar = document.querySelector(".thumb-bar");
+            var displayImg = document.querySelector(".displayed-img");
+            //显示出口张图片
+            for (var i = 1; i <= 5; i++) {
+                var img = document.createElement("img");
+                img.src = "images/pic" + i + ".jpg";
+                thumbBar.appendChild(img);
+                //3、给小图标img点击点击事件
+                img.onclick=function(){
+                    displayImg.src = this.src;
+                }
+            }
+
+            //2、实现点击按钮变暗的功能
+            var btn = document.querySelector(".dark");
+            var overlay = document.querySelector(".overlay");
+            //添加点击事件，让显示区域变暗或者变亮
+            btn.onclick = function () {
+                if (this.textContent == "变暗") {
+                    overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
+                    this.textContent = "变亮";
+                } else {
+                    overlay.style.backgroundColor = "rgba(0,0,0,0)";
+                    this.textContent = "变暗";
+                }
+            }
+
+            // //3、给小图标img点击点击事件
+            // var images = thumbBar.querySelectorAll("img");
+
+            // for(var i=0;i<images.length;i++){                               
+            //     images[i].onclick=function(){
+                   
+            //     }
+            // }
+
+        }
+    </script>
+</head>
+
+<body>
+    <h1>照片库</h1>
+
+    <div class="full-img">
+        <img class="displayed-img" src="images/pic1.jpg">
+        <div class="overlay"></div>
+        <button class="dark">变暗</button>
+    </div>
+    <div class="thumb-bar">
+
+    </div>
+
+
+</body>
+
+</html>

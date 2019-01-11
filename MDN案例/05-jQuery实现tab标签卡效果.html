@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+    }
+    .wrapper{
+      width: 480px;
+      margin: 50px auto;
+    }
+    .tab{
+      background: #333333;
+      height: 50px;
+    }
+    .tab li{
+      width: 120px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font: 18px;
+      float: left;
+      color: aliceblue;
+      list-style: none;
+    }
+    .active{
+      border-top: 4px solid aliceblue;
+    }
+    .content{
+      display: none;
+    }
+    .selected{
+      display: block;
+      width: 480px;
+      height: 400px;
+      background: aliceblue;
+    }
+
+  </style>
+
+  <script src="../jquery-1.12.4.js"></script>
+  <script>
+    $(function () {
+      $(".tab>li").mouseenter(function(){
+        //给当前li元素添加激活的class名称
+        $(this).addClass("active");
+        //将当前元素的所有兄弟元素的active类名删除
+        $(this).siblings("li").removeClass("active");
+        //获取当前的li元素的index值
+        var index = $(this).index();
+        //显示对应的products的内容
+        $(".products>div:eq("+index+")").addClass("selected");
+        $(".products>div:eq("+index+")").siblings("div").removeClass("selected");
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <ul class="tab">
+      <li class="active">11111</li>
+      <li>22222</li>
+      <li>33333</li>
+      <li>44444</li>
+    </ul>
+    <div class="products">
+      <div class="content selected">HTML文本是由HTML命令组成的描述性文本，HTML命令可以说明文字、图形、动画、声音、表格、链接等。HTML的结构包括头部(Head)、主体(Body)两大部分。头部描述浏览器所需的信息，主体包含所要说明的具体内容。</div>
+      <div class="content">主页(Homepage)是指个人或机构的基本信息页面，用户通过主页可以访问有关的信息资源。主页通常是用户使用WWW浏览器访问Internet上的任何WWW服务器所看到的第一个页面。主页一般包含文本、图像、表格和超链接等基本元素。主页通常是用来对运行WWW服务器的单位进行全面介绍，同时也是人们通过Internet了解一个公司、政府部门、学校的重要手段。例如要了解IBM公司的情况，在浏览器地址栏中输入http：//www．ibm．com后，就可以浏览IBM公司的主页。</div>
+      <div class="content">用户在客户机上提交服务请求时只需输入URL再按下回车键即可。WWW浏览器会按照用户的服务请求将此URL按HTTP在应用层转换为HTTP格式；接着将HTTP请求在互联网上的传输层/互联网层按TCP/IP传输请求；这时WWW服务器开始进行检测并接收服务请求；当WWW服务器根据服务请求完成服务、寻找信息或处理信息后，WWW服务器会创建响应信息，并根据客户机提供的回复URL、按照HTTP准备将响应信怠发给提出服务请求的客户机。通常响应信息在互联网上的传输层/互联网层按TCP/IP传输请求。客户机会将TCP/IP形式的响应信息转换为HTML格式，最终WWW浏览器显示HTML格式的响应信息。</div>
+      <div class="content">随着我国网民人数的激增，Intemet的使用范围越来越广。Web服务是Intemet上最方便与受欢迎的信息服务类型，它的影响力已超出专业技术范畴进入电子商务、远程教育、远程医疗与信息服务等领域。目前来说，Internet应用发展基本为3个阶段：基本的网络服务、基于WWW的网络服务、新的网络服务。</div>
+    </div>
+  </div>
+
+</body>
+</html>

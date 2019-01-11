@@ -36,16 +36,15 @@
                 //获取结果显示
                 var res = document.getElementById("res");
                 var guess = document.getElementById("guess");
-                //2、获取用户输入的数字
-
-                var userNum = guess.value;
-                //4、显示用户已经猜过的数字
-                var userRes = document.getElementById("userRes");
-                var userGuess = userRes.innerText + userNum + ",";
-                userRes.className = "";
-                userRes.innerText = userGuess;
-                guess.value = "";
                 if (flag != 0) {
+                    //2、获取用户输入的数字
+                    var userNum = guess.value;
+                    //4、显示用户已经猜过的数字
+                    var userRes = document.getElementById("userRes");
+                    var userGuess = userRes.innerText + userNum + ",";
+                    userRes.className = "";
+                    userRes.innerText = userGuess;
+                    guess.value = "";
                     //5、判断用户猜的数字是否正确
                     if (userNum > num) {
                         //用词猜的数字大于随机数
@@ -60,9 +59,6 @@
                         //用户猜的数字是正确的
                         res.className = "green";
                         res.innerText = "恭喜你，猜对了" + "你还剩" + flag + "次";
-                        //将用户输入框和确定按钮禁用
-                        guess.disabled = true;
-                        this.disabled = true;
                         //显示重新开始按钮
                         var restart = document.getElementById("restart");
                         restart.className = "";
@@ -76,8 +72,8 @@
                     res.innerText = "!!!GAME OVER!!!";
                     res.className = " red";
                     //将用户输入框和确定按钮禁用
-                    guess.disabled = true;
-                    this.disabled = true;
+                    guess.disabled =true;
+                    this.disabled=true;
                     //显示重新开始按钮
                     var restart = document.getElementById("restart");
                     restart.className = "";
@@ -95,9 +91,12 @@
 <body>
     <h1>猜数字游戏</h1>
     <div>
-        随机选定1-100之间的自然数。如果在10次内猜正确，就算玩家赢，如果大于10次，则判定为玩家输。每次猜的结果，自动显示到页面上。并且提示当前数字与随机数的大小关系。
+随机选定1-100之间的自然数。
+如果在10次内猜正确，就算玩家赢，如果大于10次，则判定为玩家输。
+每次猜的结果，自动显示到页面上。并且提示当前数字与随机数的大小关系。
     </div>
-    请猜数：<input type="text" id="guess" /> <input type="button" id="btn" value="确定" />
+    请猜数：<input type="text" id="guess" /> 
+<input type="button" id="btn" value="确定" />
     <div class="hidden" id="userRes">用户已猜的数字：</div>
     <div class="hidden" id="res"></div>
     <input class="hidden" type="button" id="restart" value="开始新游戏" />

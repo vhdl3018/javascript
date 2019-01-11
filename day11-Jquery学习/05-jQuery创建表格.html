@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./jquery-1.12.4.min.js"></script>
+  <script>
+  var json=[
+    {"name":"百度","href":"http://www.baidu.com"},
+    {"name":"新浪","href":"http://www.sina.com.cn"},
+    {"name":"腾讯","href":"http://www.qq.com"},
+    {"name":"小米","href":"http://www.mi.com"}
+  ];
+  //点击按钮添加一个表格
+  $(function () {
+    //给按钮添加点击事件
+    $("#btn").click(function(){
+      //创建一个表格对象
+      var table=$('<table border="1" cellspacing="0" cellpadding="0"></table>');
+      var dv = $("#dv");
+      //将表格对象添加到div中
+      dv.append(table);
+      //循环创建格中的行元素
+      var len = json.length;
+      for(var i=0;i<len;i++){
+        //console.log(i);
+        var data = json[i];
+        //创建表格行元素
+        var tr = $('<tr></tr>');
+        table.append(tr);
+        //创建表格列元素
+        var td1 = $('<td>'+data.name+'</td>');
+        var td2 = $('<td><a href="'+data.href+'">'+data.name+'</a></td>');
+        //将创建好的2列td元素，添加到tr元素中
+        tr.append(td1).append(td2);
+        //给第一行添加鼠标进入离开事件
+        tr.mouseenter(function(){
+          $(this).css("backgroundColor","green");
+        }).mouseleave(function(){
+          $(this).css("backgroundColor","");
+
+        });
+      }
+    });
+  });
+
+  //点击按钮，移除一个表格
+  $(function(){
+    $("#btn1").click(function(){
+      $("#dv").empty();
+    });
+  });
+  
+  </script>
+  <style>
+    #dv{
+      border: 1px solid red;
+      width: 500px;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 点击按钮，创建表格 -->
+  <input type="button" value="创建一个表格" id="btn">
+  <!-- 点击按钮，移除表格 -->
+  <input type="button" value="移除一个表格" id="btn1">
+
+  <div id="dv"></div>
+</body>
+</html>
