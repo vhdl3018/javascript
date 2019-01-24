@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <script src="./jquery-1.12.4.min.js"></script>
+  <script>
+    //:eq  索引值 
+    $(function(){
+      //点击按钮显示效果
+      $("#btn").click(function(){
+        //索引等于3的背景颜色改变 
+        // $("ul>li:eq(3)").css("background","red");
+        //索引值小于3的背景颜色改变 
+        // $("ul>li:lt(3)").css("background","red");
+        //索引值大于3的背景颜色改变
+        // $("ul>li:gt(3)").css("background","red");
+        //索引值小于5大于3的背景颜色改变（只能小于写在前面）
+        $("ul>li:lt(5):gt(2)").css("background","red");
+      });
+    });
+  </script>
+</head>
+<body>
+  <input type="button" id="btn" value="点击按钮显示效果">
+<ul id="uu">
+  <li>周大同1</li>
+  <li>周大同2</li>
+  <li>周大同3</li>
+  <li>周大同4</li>
+  <li>周大同5</li>
+  <li>周大同6</li>
+  <li>周大同7</li>
+  <li>周大同8</li>
+</ul>
+</body>
+</html>

@@ -144,6 +144,22 @@ $("a").get(1);
     * :visible
     * [attrName]
     * [attrName=value]
+```javascript
+    //:eq  索引值 
+    $(function(){
+      //点击按钮显示效果
+      $("#btn").click(function(){
+        //索引等于3的背景颜色改变 
+        // $("ul>li:eq(3)").css("background","red");
+        //索引值小于3的背景颜色改变 
+        // $("ul>li:lt(3)").css("background","red");
+        //索引值大于3的背景颜色改变
+        // $("ul>li:gt(3)").css("background","red");
+        //索引值小于5大于3的背景颜色改变（只能小于写在前面）
+        $("ul>li:lt(5):gt(2)").css("background","red");
+      });
+    });
+```
 4、表单选择器
     * :input
     * :text
@@ -161,3 +177,4 @@ $("a").get(1);
   * html() / html(htmlString): 读写标签体文本
 
 
+# 第二天：Jquery知识讲解
