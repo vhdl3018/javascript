@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>06-jQuery中的bind方法应用</title>
+  <script src="./jquery-1.12.4.js"></script>
+  <script>
+    //为元素绑定事件
+    $(function(){
+      $("#btn").bind("click",function(){
+        $(this).css("backgroundColor","red");
+      });
+    });
+  </script>
+</head>
+<body>
+  <input type="button" value="点击按钮绑定事件" id="btn">
+</body>
+</html>

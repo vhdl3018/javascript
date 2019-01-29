@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>jQuery测试用户按下的是什么键</title>
+  <script src="./jquery-1.12.4.js"></script>
+  <script>
+  $(function(){
+    $(document).mousedown(function(e){
+      //判断用户按下鼠标的时候，有没有按下alt键
+      if(e.altKey){
+        console.log("用户按下了alt");
+
+      }else if (e.shiftKey) {
+        console.log("用户按下了shift");
+
+      }else if (e.ctrlKey) {
+        console.log("用户按下了ctrl");
+
+      }else{
+        console.log("用户按下了鼠标");
+      }
+    });
+  });
+  </script>
+  <style>
+    div{
+      width: 500px;
+      height: 300px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+</body>
+</html>
