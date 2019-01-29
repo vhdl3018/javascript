@@ -97,7 +97,7 @@ jQuery.fn = jQuery.prototype = {
 	// The current version of jQuery being used
 	jquery: core_version,
 
-	constructor: jQuery,
+	constructor: jQuery,   //修正jQuery对象的指向问题
 	init: function( selector, context, rootjQuery ) {
 		var match, elem;
 
