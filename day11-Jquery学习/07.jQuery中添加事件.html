@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>07.jQuery中添加事件</title>
+  <script src="./jquery-1.12.4.js"></script>
+  <script>
+    //点击按钮为div绑定事件
+    $(function () {
+      $("#btn").click(function(){
+        $("#dv").on("click","p",function(){
+          alert("p被点击了");
+        });
+      });
+
+      $("#btn1").click(function(){
+        $("#dv").append($("<p>我是一个p2</p>"));
+      });
+    });
+
+  </script>
+  <style>
+  div{
+    width: 400px;
+    height: 200px;
+    background-color: aquamarine;
+  }
+  p{
+    width: 100px;
+    height: 20px;
+    background-color: brown;
+  }
+  </style>
+</head>
+<body>
+  <input type="button" value="点击按钮添加事件" id="btn">
+  <input type="button" value="创建一个p" id="btn1">
+  <div id="dv">
+    <p>我是一个p</p>
+  </div>
+</body>
+</html>
