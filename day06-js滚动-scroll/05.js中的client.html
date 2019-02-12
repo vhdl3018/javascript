@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>client</title>
+  <style>
+      body {
+        margin: 0;
+      }
+  
+      #box {
+        width: 100px;
+        height: 100px;
+        margin: 50px;
+        border: 20px solid red;
+        padding: 10px;
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      
+    </div>
+<script>
+var box = document.getElementById("box");
+//box可视区域的边框宽度
+console.log("box的top值："+box.clientTop);
+console.log("box的left值："+box.clientLeft);
+
+//box可视区域的宽度和高度值，包括padding，不包括border
+console.log("box的Height值："+box.clientHeight);   //  120 = 100 + 上、下padding
+console.log("box的Width值："+box.clientWidth);    //    120 = 100  + 左右padding
+</script>  
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>无标题文档</title>
+	<style>
+		ul,
+		h2 {
+			padding: 0;
+			margin: 0;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		#list {
+			width: 240px;
+			border: 1px solid #333;
+			margin: 0 auto;
+		}
+
+		#list .lis {}
+
+		#list h2 {
+			height: 30px;
+			line-height: 30px;
+			text-indent: 20px;
+			background: url("./images/ico1.gif") no-repeat 5px center #6FF;
+			color: #000;
+		}
+
+		#list .active {
+			background: url("./images/ico2.gif") no-repeat 5px center #FF9;
+			color: #000;
+		}
+
+		#list ul {
+			display: none;
+		}
+
+		#list ul li {
+			line-height: 24px;
+			border-bottom: 1px solid #333;
+			text-indent: 24px;
+		}
+
+		#list ul .hover {
+			background: #6FF;
+		}
+	</style>
+	<script>
+		window.onload = function () {
+			//1	获取需要操作的对象元素
+			var oUl = document.getElementById("list");
+			var oH2 = oUl.getElementsByTagName("h2");
+			var oUls = oUl.getElementsByTagName("ul");
+
+			//定义两个变量，用于存储，所有子ul下的li元素
+			var aLi = null;
+			var arrLi = [];
+			//2	给所有的h2添加点击事件
+			for (var i = 0; i < oH2.length; i++) {
+				oH2[i].index = i; //设置一个索引，方便后续调用
+				oH2[i].onclick = function () {
+					//点击当前H2时，其它的H2则隐藏
+					for (var i = 0; i < oH2.length; i++) {
+						if (i != this.index) {
+							oUls[i].style.display = "none";
+							oH2[i].className = "";
+						}
+					}
+					//当每个H2被点击时，就显示对应的ul，同时改变H2的背景颜色
+					if (this.className == "") {
+						oUls[this.index].style.display = "block";
+						this.className = "active";
+					} else {
+						oUls[this.index].style.display = "none";
+						this.className = "";
+					}
+				}
+			}
+			//3	给所有子ul下的li添加arrLi数组中，方便操作
+			for (var i = 0; i < oUls.length; i++) {
+				aLi = oUls[i].getElementsByTagName("li");
+				for (var j = 0; j < aLi.length; j++) {
+					arrLi.push(aLi[j]);
+				}
+			}
+
+			//4	对所有获取的li添加点击事件，改变背景颜色
+			for (var j = 0; j < arrLi.length; j++) {
+
+				arrLi[j].onclick = function () {
+					//将所有不是当前的li，类名置为空。
+					for (var i = 0; i < arrLi.length; i++) {
+						if (arrLi[i] != this) {
+							arrLi[i].className = "";
+						}
+					}
+					//如果当前的类名为空，则增加类名
+					if (this.className === "") {
+						this.className = "hover";
+					} else {
+						this.className = "";
+					}
+				}
+			}
+		}
+	</script>
+</head>
+
+<body>
+
+	<ul id="list">
+		<li class="lis">
+			<h2>我的好友</h2>
+			<ul>
+				<li>张三</li>
+				<li>张三</li>
+				<li>张三</li>
+				<li>张三</li>
+			</ul>
+		</li>
+		<li class="lis">
+			<h2>企业好友</h2>
+			<ul>
+				<li>李四</li>
+				<li>李四</li>
+				<li>李四</li>
+				<li>李四</li>
+				<li>李四</li>
+			</ul>
+		</li>
+		<li class="lis">
+			<h2>黑名单</h2>
+			<ul>
+				<li>张小三</li>
+				<li>李小四</li>
+			</ul>
+		</li>
+	</ul>
+
+</body>
+
+</html>

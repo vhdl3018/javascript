@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>js实现动画的原理</title>
+  <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+    }
+    div{
+      width: 150px;
+      height: 100px;
+      background: greenyellow;
+      position: absolute;
+      left: 0px;
+      margin-top: 10px;
+    }
+    #span{
+      display: block;
+      height: 700px;
+      margin-left: 400px;
+      border-left:1px solid #000;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="button" value="点击按钮div运动到400px" id="btn">
+  <input type="button" value="点击按钮div运动到0px" id="btn1">
+
+  <div id="dv"></div>
+  <span id="span"></span>
+  <script>
+    /**
+     *  1、物体运动的基础
+     *  div是创建在页面body中的，如何让它动起来的呢？ 
+     *  1）、让div脱离body的文档流，设置div的position属性为：absolute
+     *  2）、改变div的left或者top值，可以让div向右或者向下移动
+     *  2、物体运动的速度
+     *  自定义一个速度speed，让div的left或者top值，根据speed值，进行改变
+     *  3、物体自动的运动
+     *  需要物体自动的运动，则需要设置一个定时器，让物体每隔几秒运动一次
+     *  setInterval(function(){
+     *    dv.style.left = dv.offsetLeft + speed +"px";
+     *  },3000);
+     */
+
+    var dv = document.getElementById("dv");
+    var btn = document.getElementById("btn");
+    var btn1 = document.getElementById("btn1");
+
+    var speed = 9;
+    //按钮被点击后，则让div向右移动10px
+    var timer = null;
+    btn.onclick = function () {
+      //当按钮被点击后，则将left的值，增加一个speed
+      // dv.style.left = dv.offsetLeft + speed +"px";
+      // document.title = dv.style.left;
+
+      //点击按钮，开启定时器，让div的left值，自动增加
+      /*     setInterval(function(){
+            //此时，可以实现div的自动运动，但是存在问题
+            // 1、多次点击按钮，div运动的速度越来越快
+            // 2、div一直运动，停不下来
+            dv.style.left = dv.offsetLeft + speed +"px";
+          }, 30); */
+      // 解决问题1：1、多次点击按钮，div运动的速度越来越快
+      // 每次点击按钮时，先清除定时器。这样无论点击多少次，定时器都只开启一次
+      /*     clearInterval(timer);
+          
+          timer = setInterval(function(){
+            //此时，可以实现div的自动运动，但是存在问题
+            // 解决问题2： div一直运动，停不下来
+             //此时，存问题，3、div无法到达指定的400位置
+            if(dv.offsetLeft >= 400){  // 当left值大于400时，刚清除定时器     
+            
+              clearInterval(timer);
+            }else{  // 否则，继续运动
+              dv.style.left = dv.offsetLeft + speed +"px";
+            }
+          }, 30); */
+      /*  为了方便使用，将本段代码封装成函数，方便调用    
+          clearInterval(timer);
+          
+          timer = setInterval(function(){
+            //此时，可以实现div的自动运动，但是存在问题
+            // 解决问题2： div一直运动，停不下来
+             //此时，存问题，
+             //解决问题3：div无法到达指定的400位置
+             // 用offsetLeft-目标位置，当差值小于speed时，则清除定时器
+             // 同时，将left指定到目标位置
+            if(Math.abs(dv.offsetLeft-400) < speed){ 
+            
+              clearInterval(timer);
+              dv.style.left = "400px";  //此时 ，div就准确的到达了400px的位置
+            }else{  // 否则，继续运动
+              dv.style.left = dv.offsetLeft + speed +"px";
+            }
+          }, 30); */
+
+      move(dv, 400, 5);
+    }
+    //如果在增加一个按钮，让div回到初始的位置，则需要对封装的函数进行设置
+    btn1.onclick = function () {
+      move(dv, 0, 5);
+    }
+    /**
+     * @parm ele
+     * 此函数存在的问题，只能对一个值进行变动 
+     */
+    function move(ele, target, speed) {
+      //将定时器添加到元素的定义属性上
+      clearInterval(ele.timer);
+      //先判定ele.offsetLeft与target值的关系
+      var step = 0;
+      step = (ele.offsetLeft - target) > 0 ? -speed : speed;
+      ele.timer = setInterval(function () {
+        // 用offsetLeft-目标位置，当差值小于speed时，也即是不能进行一次运动，则清除定时器
+        // 同时，将left指定到目标位置
+        if (Math.abs(ele.offsetLeft - target) < Math.abs(step)) {
+          clearInterval(ele.timer);
+          ele.style.left = target + "px";
+        } else {
+          ele.style.left = ele.offsetLeft + step + "px";
+        }
+      }, 30);
+    }
+    console.log(dv.style.left); //只能读取div的行内样式值
+    console.log(dv.offsetLeft); //可读取任意位置的css样式值
+  </script>
+</body>
+
+</html>

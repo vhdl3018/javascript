@@ -358,6 +358,59 @@ for(var i=0;i<aNumbers.length;i++){
 }
 document.write("数组中所有元素的拼接字符串：" + sMessage + "<br>");
 ```
+## 6、js中运算符的优先级
+**优先级从高到低**
+1、()    优先级最高
+2、一元运算符   ++  --  ！
+3、算数运算符   先  *  /   %  后  +  - 
+4、关系运算符   >   >=  <   <=
+5、相等运算符	==   !==   ===  !===
+6、逻辑运算符	先&&  后||
+7、赋值运算符	=
+
+## 7、js中的函数 
+函数 ：  可以封装一段有特定功能的代码，然后通过函数名可以重复调用些段代码。
+语法 ： 
+function 函数名(形参1，形参2，...){
+ 函数体语句;
+}
+调用函数：
+函数名();
+arguments：获取函数传递过来的实参。
+**函数的返回值：**
+1、所有的函数都默认返回：undefined；
+2、return 语句后面的代码，不会执行；
+3、return 可以返回任意的数据类型；可以通过函数名()方式，进行访问函数的返回值。
+
+
+## 8、js代码编写规范
+1、命名要规范
+	变量、函数的命名，要有意义
+	变量的名称一般用名词
+	函数的名称一般用动词
+2、变量规范
+	操作符的前后要有空格 
+3、注释规范
+	//这里是注释
+	/*这里是注释*/
+4、空格规范
+	代码之间要有空格 
+5、换行规范
+	var arr = [1,2,3,4];
+	if(){
+        
+	}
+	for(;;){
+	    
+	} 
+## 9、js中的作用域 
+变量或者函数可以起作用的范围 ；
+ECAMscript
+全局作用域：在script或者一个独立的js文件中，在全局作用域中定义的变量为全局变量，在任何位置都可以使用；
+局部作用域：任何一个函数的内部都有一个局部作用域，在局部作用域中定义的变量，只能在函数中访问；
+块级作用域：在js和ECMAscript中没有块级作用域；
+
+
 # 第三天：js中的对象
 
 **理解
@@ -585,6 +638,7 @@ DOM的经常操作：
 ```
 ## 3、DOM操作总结 
 + **获取元素：**
+
 	1、根据id从整个文档中获取元素-----返回一个元素对象。
 	​	document.getElementById("id值");
 	2、根据标签的名字获取元素---------返回元素对象组成的数组
@@ -594,6 +648,7 @@ DOM的经常操作：
 	4、操作表单标签的属性
 	​	name\value\type\checked\selected\disabled\readonly
 + **元素操作：**
+
 	对象.style.属性=值;
 	对象.className=值;
 + **为元素添加事件的操作：**
@@ -827,7 +882,7 @@ document.querrySelectorAll('可以写任何选择器，可以选择多个');
 获取div标签中所有标签，并给它们添加背景颜色。
 
 | 节点类型 | nodeName | nodeType | nodeValue              |
-| -------- | -------- | -------- | ---------------------- |
+| -------- | -------- | -------- | -----------------|
 | 元素     | 元素名称 | 1        | null                   |
 | 属性     | 属性名称 | 2        | 属性值                 |
 | 文本     | #text    | 3        | 文本内容（不包含html） |
@@ -1323,6 +1378,80 @@ client系列：
 clientWidth：可视区的宽度，没有边框，
 clienHeight：可视区的高度
 clientLeft：左边边框的宽度
+clientTop：上边框的宽度
+
+```html
+  <style>
+    body {
+      margin: 0;
+      height: 2000px;
+    }
+    #box {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      background-color: red;
+      overflow: hidden;
+      margin: 50px;
+      border:3px solid black;
+      top:100px;
+      left: 50px;
+    }
+    #child {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+      margin: 50px;
+      border: 10px solid yellow;
+      padding: 10px;
+    }
+  </style>
+  <div id="box">
+    <div id="child">
+      
+    </div>
+  </div>
+
+  <script>
+    var box = document.getElementById("box");
+    //获取当前div的位置,包含margin、left和top的值
+    console.log(box.offsetLeft);  //  100 = margin:50+left:50
+    console.log(box.offsetTop);   //  120 = margin:50+top:100
+    //获取当前div的宽度和高度，包含边框的大小、内边距的大小
+    console.log("box的高度为："+box.offsetHeight+"px");  //box的高度为：306px
+    console.log("box的宽度为："+box.offsetWidth+"px");  //box的宽度为：306px
+  </script>
+  
+    <style>
+      body {
+        margin: 0;
+      }
+  
+      #box {
+        width: 100px;
+        height: 100px;
+        margin: 50px;
+        border: 20px solid red;
+        padding: 10px;
+        background-color: green;
+      }
+    </style>
+    <div id="box">
+      
+    </div>
+<script>
+var box = document.getElementById("box");
+//box可视区域的边框宽度
+console.log("box的top值："+box.clientTop);
+console.log("box的left值："+box.clientLeft);
+
+//box可视区域的宽度和高度值，包括padding，不包括border
+console.log("box的Height值："+box.clientHeight);   //  120 = 100 + 上、下padding
+console.log("box的Width值："+box.clientWidth);    //    120 = 100  + 左右padding
+  
+  
+  
+```
 
 
 # 第八天：  js面向对象编程
@@ -1619,7 +1748,7 @@ console.dir(person);
 ​      通过调用new Object(),还有{},自定义构造函数
 ​     
 
-创建对象的方式
+## 8、创建对象的方式
 1. 调用系统Object()----->创建出来的对象都是Object类型的,不能很明确的指出这个对象是属于什么类型
 2. 字面量的方式{}----->只能创建一个对象(一次只能创建一个)
 
@@ -1668,7 +1797,7 @@ console.dir(person);
 ​      var str="哈哈";
 ​      str.方法();---->实例对象可以直接调用原型中的属性或者方法
 
-# 第八天：js中的正则表达式
+# 第九天：js中的正则表达式
 
 ## 1、什么是正则表达式
 	也叫规则表达式，按照一定的规则组成的一个表达式，这个表达式的主要功能是匹配字符串的；
@@ -1679,7 +1808,7 @@ console.dir(person);
 ##	2、正则表达式的组成
   由元字符或者是限定符组成的一个式子
 
-```
+```html
 元字符
 . 	表示除 \n 以外的任意的一个字符。
 
@@ -1727,8 +1856,6 @@ $	表示的是以什么结束
 \w	非特殊符号
 \W	特殊符号
 \b	单词的边界	“what are you ok?”;
-
-
 ```
 
 ## 3、正则表达式的创建方式
@@ -1738,3 +1865,115 @@ $	表示的是以什么结束
 	//调用方法验证字符串是否匹配
 	reg.test(str); //true
 2、字面量的方式创建对象
+
+
+# 第十天、js运动专题详解
+
+## 1、基础运动
+1、让div运动起来：定时器+left/top即可搞定
+	div.style.left = div.offsetLeft+speed+"px";
+2、速度-物体运动的快慢:
+	如何让物体在单位时间内自动的运动起来，就需要用到定时器功能 
+	setInterval(function(){},3000);
+	表示：每3秒钟自动调用一次匿名函数
+3、运动中常见的bug
+	1）、不会停止：添加定时器
+	2）、速度取某些值的时候无法停止：停止条件设置有问题，不能用==
+	3）、到达位置后还会运动，点击一下就运动一下：设置定时器和运动的代码要放到
+	if(){}else{}里面，也就是说需要把运动和停止隔开
+	4）、重复点击速度加快：每次运动之前没有清除定时器
+```html
+<style>
+	div{
+        widht:150px;
+        height:100px;
+        backgroud:green;
+        position:absolute
+	}
+</style>
+<input type="button" value="点击按钮div运动" id="btn">
+<div id="dv"></div>
+
+<script>
+  /**
+   *  1、物体运动的基础
+   *  div是创建在页面body中的，如何让它动起来的呢？ 
+   *  1）、让div脱离body的文档流，设置div的position属性为：absolute/relative
+   *  2）、改变div的left或者top值，可以让div向右或者向下移动
+   *  2、物体运动的速度
+   *  自定义一个速度speed，让div的left或者top值，根据speed值，进行改变
+   *  3、物体自动的运动
+   *  需要物体自动的运动，则需要设置一个定时器，让物体每隔几秒运动一次
+   * 
+   */ 
+  var dv = document.getElementById("dv");
+  var btn = document.getElementById("btn");
+  var speed = 10;
+  //按钮被点击后，则让div向右移动10px
+  btn.onclick=function(){
+    //当按钮被点击后，则将left的值，增加一个speed
+    dv.style.left = dv.offsetLeft + speed +"px";
+  }
+
+
+function getStyle(obj,styleName){
+            return obj.currentStyle ? obj.currentStyle[styleName] : getComputedStyle(obj)[styleName];
+
+/**
+* 取得当前css值的写法需要额外注意：
+* 1、一定要判断obj.currentStyle是否存在，而不能判断getComputedStyle是否存在，
+*  因为判断一个对象的某个熟悉是否存在的结果最多是undefined，但是直接判断一个函数是否存在（注意，当写成window.getComputedStyle
+*  这样的时候，是可以的，结果最多也就是undefined，但是直接写getComputedStyle的话，没有就会报错）
+*  2、getComputedStyle()是window下的一个方法，主流浏览器支持，ie浏览器不支持，ie需要使用currentStyle这个属性来获取
+*/
+}
+
+</script>
+```
+## 2、匀速运动
+## 3、缓冲运动：最为常见
+	特点
+	1、逐渐变慢，最后停止
+	2、距离target越元，速度越大
+	3、速度由距离决定
+	4、速度=(目标值-当前值)/缩放系数
+	常见bug
+	1、速度取整
+	缓冲运动中速度是必须取整的，否则会出现问题
+	还有就是目标值有可能不是整数，也需要取整，比如侧边栏随着页面滚动而滚动的例子就是这样的
+4、代码中永远不要使用小数，任何语言，任何操作系统，都不要使用小数，小数不精确，会产生很多问题
+	那么要怎么做呢，比如我要存储3.14     使用整数去除314/100
+5、运动终止条件
+	1、匀速运动：距离足够近
+	2、缓冲运动，两点重合
+
+6、布局转换:把文档流布局转换成绝对定位
+	css中使用浮动方便
+	js中使用绝对定位方便，那么该怎么办
+	使用offset进行转换
+	再看一遍这个地方
+7、mspaint 画图
+8、从中心放大：
+	建议margin配合
+	为什么不用left和top，因为这样需要取出老的left和top值
+9、z-index最大值就是int的最大值，2的32次方，所以使用不会出问题
+
+10、无缝滚动原理：走到一半拉回来
+
+11、弹性公式：
+	速度+=(目标值-oDiv.offsetLeft)/5;
+	速度*=0.7;
+	常见问题：
+	1、无法到达指定位置----小数误差问题
+		解决方法：速度无法取整，使用变态方法----变量
+	2、运动过界的问题：
+	
+	3、运动终止条件的判断
+		弹性运动：距离足够近，并且速度足够小
+	
+	4、弹性运动的bug
+		可能产生运动过界的bug
+12、碰撞运动
+13、运动终止条件
+	匀速运动：距离足够近
+	缓冲运动：两点重合

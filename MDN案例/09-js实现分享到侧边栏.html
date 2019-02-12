@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>js实现分享到“分享到”侧边栏</title>
+  <style>
+    body{
+      height: 2000px;
+    }
+  #share{
+    width: 200px;
+    height: 300px;
+    background: #0aa;
+    position: absolute;
+    left: -200px;
+    top:20%;
+  }
+  #btn {
+    position: absolute;
+    width: 20px;
+    background: #eee;
+    padding: 4px;
+    left:200px;
+    top: 110px;
+  }
+  </style>
+</head>
+<body>
+  <div id="share">
+    <span id="btn">分享到</span>
+  </div>
+  <script src="../demo.js"></script>
+  <script>
+  var share = my$("share");
+  var btn = my$("btn");
+  share.onmouseover=function(){
+    move(share,0,5);
+  }
+  share.onmouseout=function(){
+    move(share,-200,5);
+  }
+  </script>
+</body>
+</html>
