@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>js实现动画</title>
+  <style>
+    #dv{
+      width: 200px;
+      height: 100px;
+      background: red;
+      position: absolute;  /*脱离文档流*/
+      margin: 50px 0;
+    }
+  </style>
+
+
+</head>
+<body>
+  <input type="button" value="点击按钮移动" id="btn"/>
+  <input type="button" value="点击按钮停止" id="stop"/>
+  <div id="dv"></div>
+
+  <script>
+    var btn = document.getElementById("btn");
+    var dv = document.getElementById("dv");
+
+    var timer=null;
+    /*
+      // 1、让元素动起来
+
+    */
+    btn.onclick=function(){
+      // alert(dv.offsetLeft);
+      timer = setInterval(function(){
+        dv.style.left = dv.offsetLeft+10+"px";
+
+      },30)
+      // alert(dv.offsetLeft);
+    }
+
+    // 2、点击按钮停止
+    var stop = document.getElementById("stop");
+    stop.onclick=function(){
+      clearInterval(timer);
+    }
+    var  a = document.getElementById
+  
+  </script>
+</body>
+</html>
