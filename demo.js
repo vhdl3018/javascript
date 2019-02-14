@@ -48,6 +48,8 @@ function getStyle(element, attr) {
     //判断浏览器是否支持这个方法
     return window.getComputedStyle ? window.getComputedStyle(element, null)[attr] : element.currentStyle[attr];
 }
+
+
 /**
  * 支持多属性更改，并可以使用回调函数的动画函数
  * @param {*} element 
@@ -59,10 +61,10 @@ function animate2(element, json, fn) {
     clearInterval(element.timeId);
     //创建定时器
     element.timeId = setInterval(function () {
-        var flag = true;//默认，全部到达目标
+        var flag = true; //默认，全部到达目标
         //将所有属性，移动到指定的位置
         for (var attr in json) {
-            if (attr == "opacity") {//判断这个属性attr中是不是opactiy
+            if (attr == "opacity") { //判断这个属性attr中是不是opactiy
                 //获取当前的位置
                 var current = getStyle(element, attr) * 100;
                 // console.log(current);
@@ -78,7 +80,7 @@ function animate2(element, json, fn) {
                 current += step;
                 element.style[attr] = current / 100;
                 //判断当前位置与目标位置是否相等
-            } else if (attr == "zIndex") {//判断这个属性attr中是不是zindex
+            } else if (attr == "zIndex") { //判断这个属性attr中是不是zindex
                 element.style.zIndex = json[attr];
             } else {
                 //获取当前的位置
@@ -116,4 +118,52 @@ function animate2(element, json, fn) {
         //测试代码:
         console.log("目标位置:" + target + ",当前位置:" + current + ",每次移动步数:" + step);
     }, 20);
+}
+
+/**
+ * 处理页面滚动距离，浏览器的兼容问题
+ * 获取页面滚动出去的距离
+ */
+function getScroll() {
+    var scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
+    var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    return {
+        scrollLeft: scrollLeft,
+        scrollTop: scrollTop
+    }
+}
+/**
+ * 获取鼠标在页面中的位置，处理浏览器中的兼容问题
+ * @param {事件} e 事件对象 
+ */
+function getPage(e) {
+    var pageX = e.pageX || e.clientX + getScroll().scrollLeft;
+    var pageY = e.pageY || e.clientY + getScroll().scrollTop;
+    return {
+        pageX: pageX,
+        pageY: pageY
+    }
+}
+/**
+ * 物体运动函数
+ * @param {需要操作的元素} ele 
+ * @param {目标位置} target 
+ * @param {速度} speed 
+ */
+function move(ele, target, speed) {
+    //将定时器添加到元素的定义属性上
+    clearInterval(ele.timer);
+    //先判定ele.offsetLeft与target值的关系
+    var step = 0;
+    step = (ele.offsetLeft - target) > 0 ? -speed : speed;
+    ele.timer = setInterval(function () {
+        // 用offsetLeft-目标位置，当差值小于speed时，也即是不能进行一次运动，则清除定时器
+        // 同时，将left指定到目标位置
+        if (Math.abs(ele.offsetLeft - target) < Math.abs(step)) {
+            clearInterval(ele.timer);
+            ele.style.left = target + "px";
+        } else {
+            ele.style.left = ele.offsetLeft + step + "px";
+        }
+    }, 30);
 }

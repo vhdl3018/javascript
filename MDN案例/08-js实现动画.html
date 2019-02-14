@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>js实现动画的原理</title>
+  <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+    }
+    div{
+      width: 150px;
+      height: 100px;
+      background: greenyellow;
+      position: absolute;
+      left: 0px;
+      margin-top: 10px;
+    }
+    #span{
+      display: block;
+      height: 700px;
+      margin-left: 400px;
+      border-left:1px solid #000;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="button" value="点击按钮div运动到400px" id="btn">
+  <input type="button" value="点击按钮div运动到0px" id="btn1">
+
+  <div id="dv"></div>
+  <span id="span"></span>
+  <script>
+    /**
+     *  1、物体运动的基础
+     *  div是创建在页面body中的，如何让它动起来的呢？ 
+     *  1）、让div脱离body的文档流，设置div的position属性为：absolute
+     *  2）、改变div的left或者top值，可以让div向右或者向下移动
+     *  2、物体运动的速度
+     *  自定义一个速度speed，让div的left或者top值，根据speed值，进行改变
+     *  3、物体自动的运动
+     *  需要物体自动的运动，则需要设置一个定时器，让物体每隔几秒运动一次
+     *  setInterval(function(){
+     *    dv.style.left = dv.offsetLeft + speed +"px";
+     *  },3000);
+     */
+
+    var dv = document.getElementById("dv");
+    var btn = document.getElementById("btn");
+    var btn1 = document.getElementById("btn1");
+
+    var speed = 9;
+    //按钮被点击后，则让div向右移动10px
+    var timer = null;
+    btn.onclick = function () {
+      //当按钮被点击后，则将left的值，增加一个speed
+      // dv.style.left = dv.offsetLeft + speed +"px";
+      // document.title = dv.style.left;
+
+      //点击按钮，开启定时器，让div的left值，自动增加
+      /*     setInterval(function(){
+            //此时，可以实现div的自动运动，但是存在问题
+            // 1、多次点击按钮，div运动的速度越来越快
+            // 2、div一直运动，停不下来
+            dv.style.left = dv.offsetLeft + speed +"px";
+          }, 30); */
+      // 解决问题1：1、多次点击按钮，div运动的速度越来越快
+      // 每次点击按钮时，先清除定时器。这样无论点击多少次，定时器都只开启一次
+      /*     clearInterval(timer);
+          
+          timer = setInterval(function(){
+            //此时，可以实现div的自动运动，但是存在问题
+            // 解决问题2： div一直运动，停不下来
+             //此时，存问题，3、div无法到达指定的400位置
+            if(dv.offsetLeft >= 400){  // 当left值大于400时，刚清除定时器     
+            
+              clearInterval(timer);
+            }else{  // 否则，继续运动
+              dv.style.left = dv.offsetLeft + speed +"px";
+            }
+          }, 30); */
+      /*  为了方便使用，将本段代码封装成函数，方便调用    
+          clearInterval(timer);
+          
+          timer = setInterval(function(){
+            //此时，可以实现div的自动运动，但是存在问题
+            // 解决问题2： div一直运动，停不下来
+             //此时，存问题，
+             //解决问题3：div无法到达指定的400位置
+             // 用offsetLeft-目标位置，当差值小于speed时，则清除定时器
+             // 同时，将left指定到目标位置
+            if(Math.abs(dv.offsetLeft-400) < speed){ 
+            
+              clearInterval(timer);
+              dv.style.left = "400px";  //此时 ，div就准确的到达了400px的位置
+            }else{  // 否则，继续运动
+              dv.style.left = dv.offsetLeft + speed +"px";
+            }
+          }, 30); */
+
+      move(dv, {
+        left: 400,
+        opacity:0.3
+      }, 13);
+    }
+    //如果在增加一个按钮，让div回到初始的位置，则需要对封装的函数进行设置
+    btn1.onclick = function () {
+      move(dv, {
+        left: 0,
+        opacity:0.9
+      }, 3);
+    }
+    /**
+     * @parm ele
+     * 此函数存在的问题，
+     * 1、只能对一个特定的值进行变动
+     * 2、有些属性值不支持offset系列的值（可以currentStyle代替offset）
+     * 3、可以将target格式更改为json，放倒传递多个值{attr:target}
+     */
+    /*     function move(ele, target, speed) {
+          //将定时器添加到元素的定义属性上
+          clearInterval(ele.timer);
+          //先判定ele.offsetLeft与target值的关系
+          var step = 0;
+          step = (ele.offsetLeft - target) > 0 ? -speed : speed;
+          ele.timer = setInterval(function () {
+            // 用offsetLeft-目标位置，当差值小于speed时，也即是不能进行一次运动，则清除定时器
+            // 同时，将left指定到目标位置
+            if (Math.abs(ele.offsetLeft - target) < Math.abs(step)) {
+              clearInterval(ele.timer);
+              ele.style.left = target + "px";
+            } else {
+              ele.style.left = ele.offsetLeft + step + "px";
+            }
+          }, 30);
+        } */
+    /**
+     * @parm ele
+     * 此函数存在的问题，
+     * 1、只能对一个特定的值进行变动
+     * 2、有些属性值不支持offset系列的值（可以currentStyle代替offset）
+     * 3、可以将target格式更改为json，放倒传递多个值{attr:target}
+     * 解决问题1、2和3：
+     * 采用json传递数据的方式，改变元素的相关值
+     * 
+     *
+     */
+    function move(ele, json, step) {
+      //将定时器添加到元素的定义属性上
+      clearInterval(ele.timer);
+      //开户定时器
+      ele.timer = setInterval(function () {
+        // 设置一个表示，所有动作完成的。则终止定时器
+        var flag = true;
+        //循环json中的数据，把所有需要操作的值都进行更改一遍
+        for (var attr in json) {
+          if (attr === "opacity") { //属性为透明度时
+            //获取元素当前的透明度值
+            var current = getStyle(ele, attr) * 100;
+            //获取json中透明度目标值
+            var target = json[attr] * 100;
+            //确定改变的速度值
+            var speed = (current - target) > 0 ? -step : step;
+            //判定current与target值是否到位了
+            if (Math.abs(current - target) < Math.abs(speed)) {
+              // clearInterval(ele.timer);
+              ele.style[attr] = target/100;
+            } else {
+              ele.style[attr] = (current + speed)/100;
+            }
+
+            // ele.style[attr] = current / 100;
+
+          } else if (attr === "zIndex") { // 属性为层级时
+            ele.style.zIndex = json[attr];
+          } else { // 属性为以像素为单位的相关值
+            var current = parseInt(getStyle(ele, attr));
+            var target = json[attr];
+            //这样计算速度存在一个问题，物体到达不了终点
+            var speed = (current - target) > 0 ? -step : step;
+            // current += speed;
+
+            if (Math.abs(current - target) < Math.abs(speed)) {
+              // clearInterval(ele.timer);
+              ele.style[attr] = target + "px";
+            } else {
+              ele.style[attr] = current + speed + "px";
+            }
+            // ele.style[attr] = current + "px";
+          }
+          console.log(current + "====" + target);
+          if (current != target) {
+            flag = false;
+          }
+
+        }
+
+        if (flag) {
+          clearInterval(ele.timer);
+        }
+        /*         //获取元素当前位置的值
+                var current = getStyle(ele, );
+                //先判定ele.offsetLeft与target值的关系
+                var step = 0;
+                step = (ele.offsetLeft - target) > 0 ? -speed : speed;
+                // 用offsetLeft-目标位置，当差值小于speed时，也即是不能进行一次运动，则清除定时器
+                // 同时，将left指定到目标位置
+                if (Math.abs(ele.offsetLeft - target) < Math.abs(step)) {
+                  clearInterval(ele.timer);
+                  ele.style.left = target + "px";
+                } else {
+                  ele.style.left = ele.offsetLeft + step + "px";
+                } */
+      }, 30);
+    }
+    /**
+     * 获取元素的样式
+     * 
+     */
+    function getStyle(ele, attr) {
+      return window.getComputedStyle ? window.getComputedStyle(ele, null)[attr] : ele.currentStyle[attr];
+    }
+    console.log(getStyle(dv, "left")); //只能读取div的行内样式值
+    console.log(dv.offsetLeft); //可读取任意位置的css样式值
+  </script>
+</body>
+
+</html>
