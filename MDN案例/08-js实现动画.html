@@ -193,12 +193,14 @@
             // ele.style[attr] = current + "px";
           }
           console.log(current + "====" + target);
+          //如果手环过程中，有一个目标值未到达，则将flag标志置为flase
           if (current != target) {
             flag = false;
           }
 
         }
 
+        // 循环结束后，flag仍为true，则说明所有目标值均已到达，则将定时器清除
         if (flag) {
           clearInterval(ele.timer);
         }
