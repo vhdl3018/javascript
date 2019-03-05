@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>08-js面向对象之继承方法.html</title>
+</head>
+<body>
+  <script>
+  function Person(name,age){
+    this.name=name;
+    this.age=age;
+
+  }
+
+  Person.prototype.showName=function(){
+    alert(this.name);
+  }
+
+  Person.prototype.showAge=function(){
+    alert(this.age);
+  }
+
+  //  工人，继承人类
+  function Worker(name,age,job){
+    //调用父级的构造函数
+    Person.call(this,name,age);
+
+    this.job=job;
+  }
+
+  //原型继承，用来继承父级的原型方法
+  Worker.prototype = Person.prototype;
+  Worker.prototype.showJob = function (){
+    alert(this.job);
+  }  
+
+  var worker=new Worker("李四",19,"油漆工");
+  worker.showAge();
+  worker.showName();
+  worker.showJob();
+  </script>
+</body>
+</html>
