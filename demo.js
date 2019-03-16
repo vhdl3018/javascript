@@ -144,26 +144,76 @@ function getPage(e) {
         pageY: pageY
     }
 }
-/**
- * 物体运动函数
- * @param {需要操作的元素} ele 
- * @param {目标位置} target 
- * @param {速度} speed 
- */
-function move(ele, target, speed) {
+function move(ele, json, step, fn) {
     //将定时器添加到元素的定义属性上
     clearInterval(ele.timer);
-    //先判定ele.offsetLeft与target值的关系
-    var step = 0;
-    step = (ele.offsetLeft - target) > 0 ? -speed : speed;
+    //开户定时器
     ele.timer = setInterval(function () {
-        // 用offsetLeft-目标位置，当差值小于speed时，也即是不能进行一次运动，则清除定时器
-        // 同时，将left指定到目标位置
-        if (Math.abs(ele.offsetLeft - target) < Math.abs(step)) {
-            clearInterval(ele.timer);
-            ele.style.left = target + "px";
-        } else {
-            ele.style.left = ele.offsetLeft + step + "px";
+      // 设置一个表示，所有动作完成的。则终止定时器
+      var flag = true;
+      //循环json中的数据，把所有需要操作的值都进行更改一遍
+      for (var attr in json) {
+        if (attr === "opacity") { //属性为透明度时
+          //获取元素当前的透明度值
+          var current = parseInt(getStyle(ele, attr) * 100);
+          //获取json中透明度目标值
+          var target = json[attr] * 100;
+          //确定改变的速度值
+          var speed = (current - target) > 0 ? -step : step;
+          //判定current与target值是否到位了
+          if (Math.abs(current - target) < Math.abs(speed)) {
+            // clearInterval(ele.timer);
+            ele.style[attr] = target / 100;
+          } else {
+            ele.style[attr] = (current + speed) / 100;
+          }
+
+          // ele.style[attr] = current / 100;
+
+        } else if (attr === "zIndex") { // 属性为层级时
+          ele.style.zIndex = json[attr];
+        } else { // 属性为以像素为单位的相关值
+          var current = parseInt(getStyle(ele, attr));
+          var target = json[attr];
+          //这样计算速度存在一个问题，物体到达不了终点
+          var speed = (current - target) > 0 ? -step : step;
+          // current += speed;
+
+          if (Math.abs(current - target) < Math.abs(speed)) {
+            // clearInterval(ele.timer);
+            ele.style[attr] = target + "px";
+          } else {
+            ele.style[attr] = current + speed + "px";
+          }
+          // ele.style[attr] = current + "px";
         }
+        console.log(current + "====" + target);
+        if (current != target) {
+          flag = false;
+
+        }
+
+      }
+      //flag为true，则说明所有的值都达到目标位置，则清除定时 器
+      if (flag) {
+        clearInterval(ele.timer);
+        // 当运动结束后，在调用此函数
+        if (fn) {
+          fn();
+        }
+      }
+      /*         //获取元素当前位置的值
+              var current = getStyle(ele, );
+              //先判定ele.offsetLeft与target值的关系
+              var step = 0;
+              step = (ele.offsetLeft - target) > 0 ? -speed : speed;
+              // 用offsetLeft-目标位置，当差值小于speed时，也即是不能进行一次运动，则清除定时器
+              // 同时，将left指定到目标位置
+              if (Math.abs(ele.offsetLeft - target) < Math.abs(step)) {
+                clearInterval(ele.timer);
+                ele.style.left = target + "px";
+              } else {
+                ele.style.left = ele.offsetLeft + step + "px";
+              } */
     }, 30);
-}
+  }
