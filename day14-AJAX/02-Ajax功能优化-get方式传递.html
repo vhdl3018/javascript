@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>02-ajax功能优化</title>
+</head>
+<body>
+    <form action="">
+        用户名：<input type="text" name="username" id="username"><span id="info" style="color:red"></span>
+        <br />
+        密　码：<input type="password" name="password" id="password">
+        <input type="button" value="登录" id="btn">
+      </form>
+  <script>
+  var btn = document.getElementById("btn");
+  btn.onclick = function(){
+    var uname = document.getElementById("username").value;
+    var pwd = document.getElementById("password").value;
+
+    //1、创建XMLHttpRequest对象
+    var xhr = null;
+    if(window.XMLHttpRequest){
+      xhr = new XMLHttpRequest();
+    }else{
+      xhr = new ActiveXObject("Microsoft");
+    }
+
+    //2、准备发送数据
+    /**
+    参数一：请求方式（get获取数据，post提交数据）
+    参数二：请求地址
+    参数三：同步或异步标志位，默认为true异步，false同步 
+    如果是get请求，那么请求参数必须在url中传递
+    encodeURI()：用来对中文参数进行编码，防止乱码
+    */
+    var param = 'username='+uname+'&password='+pwd;
+    xhr.open('get','02get.php?'+param,true);
+    //3、执行发送动作
+    xhr.send(null);  //get传入null; post传数据data
+
+    //4、指定回调函数
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState == 4){
+        if(xhr.status == 200){
+          alert(xhr.responseText);
+        }
+      }
+    }
+
+  }
+  
+  </script>
+</body>
+</html>

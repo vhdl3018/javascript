@@ -7,40 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="http://www.baidu.com" value="显示效果" id="btn">百度</a>
-    <div id="dv"></div>
+    <p id="test">after</p>
+    <a href="#" id="test" onclick="jq()">jquery</a>
     <script src="./jquery-1.12.4.js"></script>
     <script>
-        //点击按钮设置div的宽和高，背景颜色
-        //1、引入JQuery的js文件
-        // $("#btn").click(function(){
-        //     $("#dv").css({"width":"200px","height":"200px","background-color":"red"});
-        // }); 
+        // function jq(){
+        //     alert($("div>p").html());
+        // }
 
-        // $(function(){
-        //     alert($());
-        //     alert($("btn"));
-        //     alert($("btn").css("background-color","blue"));
+        // function jq(){
+        //     $("<div><p>hello</p></div>").appendTo("body");
+        // }
+        //$(document).ready();
 
-        //     //上面三个语句，返回的都是同一个jQuery对象
+        // function jq(){
+        //     $("#test").css("color","red");
+        // }
 
-        // });   
-    // function $my(){
-    //     obj = new Object();
-    //     obj.username="123";
-    //     obj.say=function(){
-    //         console.log("my name is " + obj.username);
-    //     }
-    //     return obj;
-    // }
-
-    // $my().say();
-    $(function(){
-        $("btn").click(function(event){
-            alert( "The link will no longer take you to jquery.com" );
-            // event.preventDefault();
+        $(function(){
+            var arr = $.merge([0,1,2],[2,3,4]);
+            console.log(arr);
         });
-    });
     </script>
 </body>
 </html>
