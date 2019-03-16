@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>01-vquery基本框架形式</title>
+  <script src="./vQuery.js"></script>
+  <style>
+  #dv{
+    width: 100px;
+    height: 100px;
+    background: red;
+  }
+  </style>
+</head>
+
+<body>
+  <script>
+
+    $(function(){
+      $("ul").find(".c").css("background",'red');
+    })
+
+
+
+  </script>
+
+<ul>
+  <li>sfsf213123</li>
+  <li>sfsf213123</li>
+  <li id="dv">sfsf213123</li>
+  <li>sfsf213123</li>
+  <li>sfsf213123</li>
+  <li>sfsf213123</li>
+  <li>sfsf213123</li>
+</ul>
+<ul>
+  <li>2fsf231</li>
+  <li class="c">2fsf231</li>
+  <li class="c">2fsf231</li>
+  <li>2fsf231</li>
+</ul>
+</body>
+
+</html>

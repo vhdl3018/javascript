@@ -1,47 +1,24 @@
 <!DOCTYPE html>
-<html>
- <head> 
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-  <title>CSS3 RGBA</title> 
-  <style>
-  html,body,h1,h2,p,pre{margin:0;padding:0;} 
-  body{padding:0 20px;background:#090;color:#000;font:14px/1.6 Arial;} 
-  h1{font-size:26px;} 
-  h2{padding:10px 0;font-size:16px;} 
-  pre{padding:2px 0;} 
-  div{padding:0 20px;border:1px solid #fff;color:#fff;} 
-  .grammar{padding:0 20px;border:0 none;font-weight:bold;font-size:16px;}  
-  #hex{  background-color:#000000; } 
-  #rgb{  background-color:rgb(0,0,0); } 
-  #rgb-alpha{  background-color:rgb(0,0,0);  opacity:.5; } 
-  #rgba{  background-color:rgba(0,0,0,.5); } 
-  .tips{padding:10px;color:#c00;} 
-  .notes{padding:2px 10px;background:#eee;} 
-  .navigation{padding:10px 0;} 
-  .copyright{padding:10px 0;font-style:italic;font-weight:bold;font-size:14px;} </style> 
- </head> 
- <body> 
-  <h1>CSS3 RGBA:</h1> 
-  <p class="notes">浏览器参照基准：Firefox3.6 and Later, Chrome5 and Later, Safari5 and Later, Opera10.53 and Later, IE系列不做参考</p> 
-  <h2>语法：</h2> 
-  <div class="grammar">
-    rgba(0-255,0-255,0-255,0-1) 
-  </div> 
-  <h2>HEX颜色中的黑色：</h2> 
-  <div id="hex"> 
-   <pre><code>background-color:#000000;</code></pre> 
-  </div> 
-  <h2>RGB颜色中的黑色：</h2> 
-  <div id="rgb"> 
-   <pre><code>background-color:rgb(0,0,0);</code></pre> 
-  </div> 
-  <h2>RGB颜色+opacity透明度：</h2> 
-  <div id="rgb-alpha"> 
-   <pre><code>background-color:rgb(0,0,0); opacity:.5;</code></pre> 
-  </div> 
-  <h2>RGBA颜色：</h2> 
-  <div id="rgba"> 
-   <pre><code>background-color:rgba(0,0,0,.5);</code></pre> 
-  </div>   
- </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+　　var name = "The Window";
+　　var object = {
+　　　　name : "My Object",
+　　　　getNameFunc : function(){
+　　　　　　var that = this;
+　　　　　　return function(){
+　　　　　　　　return that.name;
+　　　　　　};
+　　　　}
+　　};
+　　alert(object.getNameFunc()());
+  </script>
+</body>
 </html>

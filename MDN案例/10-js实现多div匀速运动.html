@@ -65,7 +65,7 @@
         for (var attr in json) {
           if (attr === "opacity") { //属性为透明度时
             //获取元素当前的透明度值
-            var current = parseInt(getStyle(ele, attr) * 100);
+            var current = parseInt(parseFloat(getStyle(ele, attr)) * 100);
             //获取json中透明度目标值
             var target = json[attr] * 100;
             //确定改变的速度值

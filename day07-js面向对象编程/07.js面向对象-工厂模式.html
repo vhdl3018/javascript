@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  var obj = new Object();
+  obj.name="李四";
+  obj.age=19;
+  obj.say = function(){
+    console.log("我的名字叫："+ this.name);
+    console.log("我今年"+ this.age + "岁了！");
+  }
+
+  obj.say();
+  
+  </script>
+</body>
+</html>
