@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./ajax.js"></script>
+  <title>ajax函数封装</title>
+</head>
+<body>
+  <div id="dv1"></div>
+  <input type="button" value="按钮1" id="btn">
+  <div id="dv2"></div>
+  <input type="button" value="按钮2" id="btn2">
+  <script>
+    var btn = document.getElementById("btn");
+    btn.onclick=function(){
+      ajax("post","05get.php","",function(data){
+        var dv1 = document.getElementById("dv1");
+        dv1.innerHTML = data;
+      });
+    }
+    var btn2 = document.getElementById("btn2");
+    btn2.onclick=function(){
+      ajax("get","05get.php","",function(data){
+        console.log(data);
+        var dv2 = document.getElementById("dv2");
+        dv2.innerHTML = data;
+      });
+    }
+  </script>
+</body>
+</html>
