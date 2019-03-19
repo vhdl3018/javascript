@@ -1,0 +1,63 @@
+@charset "utf-8";
+
+/* 样式重置 */
+body,
+h1,h2,h3,h4,h5,h6,
+p,
+dl,dd,dt,
+ul,ol,li,
+form,input,textarea,select,
+table,tr,td{
+  margin: 0;
+  padding: 0;
+}
+
+em{font-style: normal;}
+li{list-style: none;}
+a{text-decoration: none;}
+img{border: none;vertical-align: top;}
+table{border-collapse: collapse;}
+input,textarea{outline: none;}
+textarea{resize: none;overflow: auto;}
+body{font-size:12px;font-family: "微软雅黑";}
+
+/*public*/
+/* 清除浮动 */
+.clear{zoom:1;}
+.clear:after{content: '';display: block;clear: both;}
+.fl{float: left;}
+.fr{float: right;}
+
+/* 渐变 */
+.gradient{
+  background: -moz-linear-gradient(top,#ffffff,#f8f8f8);
+  background:-webkit-linear-gradient(top,#ffffff,#f8f8f8);
+  background:-ms-linear-gradient(top,#ffffff,#f8f8f8);
+  -ms-filter:"progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f8f8f8',GradientType=0 )";
+  +background: #f9f9f9;
+}
+/* layout */
+#header{
+  width: 960px;
+  height: 30px;
+  margin: 0 auto;
+  border-radius: 0 0 6px 6px;
+}
+#nav {
+  width: 960px;
+  height: 100px;
+  margin: 0 auto;
+  background: #ffc;
+}
+#search{
+  width: 958px;
+  height: 114px;
+  margin: 0 auto;
+  border: 1px solid #dbdbdb;border-radius:6px; 
+}
+#search .bar{}
+.content{}
+.main{}
+.section{}
+.options{}
+.main_ad{}
