@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>通过jsonp实现ajax的跨域操作</title>
+  <script src="./jquery-1.12.4.js"></script>
+  <script>
+  $(function(){
+    $("#keyword").keyup(function(){
+      var kw = $(this).val();
+      $.ajax({
+        url:"https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?",
+        jsonp:'cb',
+        data:{wd:kw},
+        dataType:'jsonp',
+        success:function(data){
+          var sug = data.s;
+          var tag = '<ul>';
+          $.each(sug,function(i,e){
+            tag += '<li>' + e +'</li>';
+          });
+          tag += '</ul>';
+          $("#info").html(tag);
+        }
+
+      });
+    });
+  });
+
+
+  </script>
+  <style>
+    #container{
+      width: 400px;
+      height: 400px;
+      background: lightcyan;
+      margin: auto;
+      text-align: center;
+
+    }
+  
+  </style>
+</head>
+<body>
+  <div id="container">
+    <input type="text" name="keyword" id="keyword">
+    <input type="button" value="搜索" id="btn">
+    <div id="info"></div>
+
+  </div>
+</body>
+</html>
