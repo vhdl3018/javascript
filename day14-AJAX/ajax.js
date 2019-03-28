@@ -49,10 +49,6 @@ function ajax4jsonp(defaults) {
   script.src = defaults.url + '?' + defaults.jsonp + '=' + cbName + param;
   var head = document.getElementsByTagName('head')[0];
   head.appendChild(script);
-
-
-
-
 }
 
 function ajax4json(defaults) {
